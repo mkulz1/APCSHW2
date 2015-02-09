@@ -15,9 +15,8 @@ public class Recursion{
     }
 
     public int fib(int n){
-	if (n < 0) {
+	if (n < 0) 
 	    throw new IllegalArgumentException();
-	}
 	return fibH(n, 0, 1);
     }
     public int fibH(int n, int x, int y){
@@ -27,6 +26,8 @@ public class Recursion{
     }
 
     public double sqrt(double n){
+	if (n < 0) 
+	    throw new IllegalArgumentException();
 	return sqrtH(n, n / 2);
     }
     public double sqrtH(double n, double g){
