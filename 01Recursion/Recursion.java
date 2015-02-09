@@ -25,6 +25,15 @@ public class Recursion{
 	    return x;
 	return fibH(n - 1, y, x + y);
     }
+
+    public double sqrt(double n){
+	return sqrtH(n, n / 2);
+    }
+    public double sqrtH(double n, double g){
+	if (Math.abs(g * g - n) < 0.00001)
+	    return g;
+	return sqrtH(n, ( n / g + g) / 2);
+    }
 		  
     public static void main(String[]args){
 
@@ -35,6 +44,8 @@ public class Recursion{
 	//	System.out.println(r.fact(-4));
 	System.out.println(r.fib(5));
 	System.out.println(r.fib(10));
+	System.out.println(r.sqrt(100));
+	System.out.println(r.sqrt(25));
 
     } 
 
