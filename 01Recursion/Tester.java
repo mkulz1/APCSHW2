@@ -11,7 +11,7 @@ public class Tester{
 	System.out.println(r.fib(10));
 	System.out.println(r.sqrt(100));
 	System.out.println(r.sqrt(25));
-
+	System.out.println(r.sqrt(0));
     } 
 
 }
