@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Queens{
+public class NQueens{
 
     private int[][] board;
 
@@ -17,7 +17,7 @@ public class Queens{
 	return ans;
     }
 
-    public nQueens(int n){
+    public NQueens(int n){
 	// Makes base board and initialize it
 	board = new int[n][n];
 	for(int i = 0; i < size; i++){
@@ -28,7 +28,8 @@ public class Queens{
     }
 
     public boolean solve(){
-    
+	board[0][0] = 8;
+
     }
 
 }
