@@ -91,6 +91,7 @@ public class KnightsTour{
 	return false;
     }
 
+<<<<<<< HEAD
 
     public static void main(String[]args) {
 
@@ -100,4 +101,6 @@ public class KnightsTour{
 
     }
 
+=======
+>>>>>>> FETCH_HEAD
 }
