@@ -62,7 +62,7 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	//	System.out.println(this);
+	//  	System.out.println(this);
 	//	wait(1);
 
 	// out of bounds
@@ -94,8 +94,9 @@ public class KnightsTour{
 
     public static void main(String[]args) {
 
-	KnightsTour board = new KnightsTour(5);
-	System.out.println(board.solve());
+	KnightsTour board = new KnightsTour(7);
+        board.solve();
+       	System.out.println(board);
 
     }
 
