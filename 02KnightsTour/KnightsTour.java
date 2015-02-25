@@ -91,16 +91,5 @@ public class KnightsTour{
 	return false;
     }
 
-<<<<<<< HEAD
 
-    public static void main(String[]args) {
-
-	KnightsTour board = new KnightsTour(7);
-        board.solve();
-       	System.out.println(board);
-
-    }
-
-=======
->>>>>>> FETCH_HEAD
 }
