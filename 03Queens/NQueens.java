@@ -58,9 +58,9 @@ public class NQueens{
     }
 
     public boolean solve(int x){
-	if (x < board.length || x >= 0)
-	    return solve(x,board.length);
-	return false;
+	if (x > board.length || x < 0)
+	    return false;
+	return solve(x,board.length);
     }
 
     public boolean solve(int r, int numQ){
