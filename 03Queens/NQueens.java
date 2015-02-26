@@ -60,41 +60,63 @@ public class NQueens{
     public boolean solve(int x){
 	if (x > board.length || x < 0)
 	    return false;
-	return solve(x,board.length);
+	board[0][x] = 8;
+	return solve(1,board.length-1);
     }
 
-    public boolean solve(int r, int numQ){
-	//System.out.println(this);
-	//wait(20);
-
-	if(numQ == 0)
+    public boolean solve(int y, int numQ){
+      if (numQ == 0){
 	    return true;
-
-	for(int i = 0; i < board.length; i++){
-
 	}
-	return false;
+	for (int x = 0; x < board.length; x ++){
 
-    }
+	    if (canPut(x, y)){
 
-    public void blockSpots(int row, int col){
-	blockSpots(row,col,0,1);
-	blockSpots(row,col,1,0);
-	blockSpots(row,col,1,1);
-	blockSpots(row,col,0,-1);
-	blockSpots(row,col,-1,0);
-	blockSpots(row,col,-1,1);
-	blockSpots(row,col,1,-1);
-	blockSpots(row,col,-1,-1);
-    }
+	        board[y][x] = 8;
 
-    public void blockSpots(int row, int col, int y, int x){
+		if (solve(y + 1, numQ - 1)){
+		    return true;
+		}
 
-	for(int i = row;i < board.length && i > 0; i=i+y){
-	    for(int j = col; j < board.length && j > 0;j= j+x){
-		board[i][j] = 3;
+		board[y][x] = 0;
 	    }
 	}
+
+	return false;
     }
+
+    public boolean canPut(int col, int row){
+	// Going down the row
+	for (int y = row; y >= 0; y --){
+	    if (board[y][col] == 8){
+		return false;
+	    }
+	}
+
+	// Going down the left diagonal
+	int c = col;
+	int r = row;
+	while(c >= 0 && r >= 0){
+	    if (board[r][c] == 8){
+		return false;
+	    }
+	    c --;
+	    r --;
+	}
+
+	// Going down the right diagonal
+	c = col;
+	r = row;
+        while(c < board.length && r >= 0){
+	    if (board[r][c] == 8){
+		return false;
+	    }
+	    c++;
+	    r--;
+	}
+
+	return true;
+    }
+   
 
 }
