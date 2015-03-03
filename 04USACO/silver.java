@@ -4,11 +4,12 @@ import java.io.*;
 public class silver{
 
     private String[][] pasture;
-    private int n,m,r1,c1,r2,c2,T;
+    private int n,m,r1,c1,r2,c2,T,ways;
     
 
     public silver(String filename){
 	loadLines(filename);
+	ways = 0;
     }
 
     public void loadLines(String fileName){
@@ -45,21 +46,28 @@ public class silver{
     }
 
     public int travel(){
-	return travel(r1,c1,T);
+	return travel(r1,c1,0);
     }
 
-    public int travel(int x,int y, int steps){
-	if(x == r2 && y == c2 && steps == T){
-	    return 1;
-	}
+    public void travel(int x,int y, int steps){
+	
+	if(x < 0 || y < 0 || x >= n || y >= m || steps > T)
+	    return 0; 
+	
+	if(x == r2 && y == c2 && steps == T)
+	    ways++;
+
+	if(pasture[x][x].equals("*"))
+		return 0;
+	
 	return 0;
     }
-
+    
     public static void main(String[]args){
-
+	
 	silver thing = new silver("cowTravel.txt");
 	System.out.println(thing.travel());
-
+	
     }
-
+    
 }
