@@ -4,6 +4,8 @@ import java.io.*;
 public class silver{
 
     private String[][] pasture;
+    private Scanner in;
+    private File input;
     private int n,m,r1,c1,r2,c2,T,ways;
     
 
@@ -16,33 +18,44 @@ public class silver{
 
 	try{
 
-	    File input = new File(fileName);
-	    Scanner in = new Scanner(input);
+	    input = new File(fileName);
+	    in = new Scanner(input);
 
-	    // Line 1
-	    n = in.nextInt();
-	    m = in.nextInt();
-	    T = in.nextInt();
-	    pasture = new String[n][m];
-
-	    // Pasture
-	    for(int i = 0; i < n; i++){
-		for(int j = 0; j < m; j++){
-		    pasture[i][j] = in.next();
-		}
-	    }
-
-	    // Last Line
-	    r1 = in.nextInt();
-	    c1 = in.nextInt();
-	    r2 = in.nextInt();
-	    c2 = in.nextInt();
-	    
 	}catch(FileNotFoundException e){
 
 	    System.out.println("File Does Not Exist");
 
 	}
+
+	// Line 1
+	n = in.nextInt();
+	m = in.nextInt();
+	T = in.nextInt();
+	pasture = new String[n][m];
+	
+	// Pasture
+	for(int i = 0; i < n; i++){
+	    for(int j = 0; j < m; j++){
+		    pasture[i][j] = in.next();
+	    }
+	}
+	
+	    // Last Line
+	r1 = in.nextInt();
+	c1 = in.nextInt();
+	r2 = in.nextInt();
+	c2 = in.nextInt();
+    }
+    
+    public String toString(){
+	String s  = "";
+	for(int i = 0; i < n; i++){
+	    for(int j = 0; j < m; j++){
+		s = s + pasture[n][m] + " ";
+	    }
+	    s += "\n";
+	}
+	return s;
     }
 
     public int travel(){
@@ -72,6 +85,7 @@ public class silver{
     public static void main(String[]args){
 	
 	silver thing = new silver("cowTravel.txt");
+	System.out.println(thing);
 	System.out.println(thing.travel());
 	
     }
