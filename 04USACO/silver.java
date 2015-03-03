@@ -3,9 +3,7 @@ import java.io.*;
 
 public class silver{
 
-    private String[][] pasture;
-    private Scanner in;
-    private File input;
+    private char[][] pasture;
     private int n,m,r1,c1,r2,c2,T,ways;
     
 
@@ -18,33 +16,34 @@ public class silver{
 
 	try{
 
-	    input = new File(fileName);
-	    in = new Scanner(input);
-
+	    File input = new File(fileName);
+	    Scanner in = new Scanner(input);
+	    
+	    // Line 1
+	    n = in.nextInt();
+	    m = in.nextInt();
+	    T = in.nextInt();
+	    pasture = new char[n][m];
+	    
+	    // Pasture
+	    for(int i = 0; i < n; i++){
+		String line = in.next();
+		for(int j = 0; j < m; j++){
+		    pasture[i][j] = line.charAt(j);
+		}
+	    }
+	    
+	    // Last Line
+	    r1 = in.nextInt();
+	    c1 = in.nextInt();
+	    r2 = in.nextInt();
+	    c2 = in.nextInt();
+	    
 	}catch(FileNotFoundException e){
-
+	    
 	    System.out.println("File Does Not Exist");
 
 	}
-
-	// Line 1
-	n = in.nextInt();
-	m = in.nextInt();
-	T = in.nextInt();
-	pasture = new String[n][m];
-	
-	// Pasture
-	for(int i = 0; i < n; i++){
-	    for(int j = 0; j < m; j++){
-		    pasture[i][j] = in.next();
-	    }
-	}
-	
-	    // Last Line
-	r1 = in.nextInt();
-	c1 = in.nextInt();
-	r2 = in.nextInt();
-	c2 = in.nextInt();
     }
     
     public String toString(){
@@ -73,7 +72,7 @@ public class silver{
 	    return;
 	}
 
-	if(pasture[x][x].equals("*"))
+	if(pasture[x][x] == '*')
 	    return;
 	
 	travel(x,y+1,steps+1);
