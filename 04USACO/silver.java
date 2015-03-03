@@ -46,21 +46,27 @@ public class silver{
     }
 
     public int travel(){
-	return travel(r1,c1,0);
+	travel(r1,c1,0);
+	return ways;
     }
 
     public void travel(int x,int y, int steps){
 	
 	if(x < 0 || y < 0 || x >= n || y >= m || steps > T)
-	    return 0; 
+	    return; //stops the travel
 	
-	if(x == r2 && y == c2 && steps == T)
+	if(x == r2 && y == c2 && steps == T){
 	    ways++;
+	    return;
+	}
 
 	if(pasture[x][x].equals("*"))
-		return 0;
+	    return;
 	
-	return 0;
+	travel(x,y+1,steps+1);
+	travel(x,y-1,steps+1);
+	travel(x+1,y,steps+1);
+	travel(x-1,y,steps+1);
     }
     
     public static void main(String[]args){
