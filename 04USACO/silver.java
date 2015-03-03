@@ -7,8 +7,8 @@ public class silver{
     private int n,m,r1,c1,r2,c2,T;
     
 
-    public silver(){
-	loadLines("ctravel.txt");
+    public silver(String filename){
+	loadLines(filename);
     }
 
     public void loadLines(String fileName){
@@ -42,6 +42,24 @@ public class silver{
 	    System.out.println("File Does Not Exist");
 
 	}
+    }
+
+    public int travel(){
+	return travel(r1,c1,T);
+    }
+
+    public int travel(int x,int y, int steps){
+	if(x == r2 && y == c2 && steps == T){
+	    return 1;
+	}
+	return 0;
+    }
+
+    public static void main(String[]args){
+
+	silver thing = new silver("cowTravel.txt");
+	System.out.println(thing.travel());
+
     }
 
 }
