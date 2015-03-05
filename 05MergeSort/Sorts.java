@@ -46,10 +46,16 @@ public class Sorts{
     public static void main(String[]args){
 	
 	int array[] = {7, 1, 8, 2, 0, 12, 10, 7, 5, 3};
+	int tester[] = new int[1000];
+      
+	Sorts mergeSort = new Sorts();
+
+	for (int i = 0 ; i < tester.length ; i++) { 
+		tester[i] = (int) (Math.random () * 10); 
+	    }
 	
-        Sorts mergeSort = new Sorts();
-	
-        Sorts.sort(array);
+        mergeSort.sort(array);
+	mergeSort.sort(tester);
 
 
     }
