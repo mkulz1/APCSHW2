@@ -2,14 +2,16 @@ import java.util.Random;
 
 public class Partition{
  
-    public static int[] partition(int[] array){
+    public int value = -1;
+
+    public void partition(int[] array){
 	Random r  = new Random();
 	int tIndex = r.nextInt(array.length); // index of target
 	int target = array[tIndex]; // target integer
 
-	return partition(array,0,array.length-1,target);
+	 partition(array,0,array.length-1,target);
     }
-    public static int[] partition(int[] array, int start, int end, int target){
+    public void partition(int[] array, int start, int end, int target){
 	int[] newArray = new int[array.length];
 	int s = start;
 	int e = end;
@@ -22,7 +24,6 @@ public class Partition{
 		s++;
 	    }
 	}
-	return newArray;
     }
 
     public static String printArray(int[] array){
@@ -37,9 +38,7 @@ public class Partition{
 	
 	Partition part = new Partition();
 	int[] tester = {1,6,4,5,2,3,6,6000};
-	System.out.println(printArray(partition(tester)));
-	//	partition(tester);
-	//	System.out.println(printArray(tester));
+	System.out.println(part.value);
     }
 
 }
