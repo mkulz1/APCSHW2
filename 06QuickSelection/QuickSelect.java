@@ -26,13 +26,15 @@ public class QuickSelect{
 	int[] d = new int[ary.length];
 	//copy over elements outside of range into d
 	int something = 0;
-	int something2 = ary.length;
-	System.arraycopy(ary,something,d,something,si-something);
-	System.arraycopy(ary,something2,d,something2,something2-ei);
+	int something2 = ary.length-1;
+	//	System.arraycopy(ary,something,d,something,si-something);
+	//	System.arraycopy(ary,something2,d,something2,something2-ei-1);
 	//select the pivot point
 	Random r  = new Random();
 	int tIndex = r.nextInt(array.length); // index of target
 	int target = array[tIndex]; // target integer
+	pivot = target;
+
 	//for elements in range
 	int rIndex = si;
 	int lIndex = ei;
@@ -53,6 +55,8 @@ public class QuickSelect{
 	
 	QuickSelect quick = new QuickSelect(10);
 	System.out.println(quick);
+	quick.partition(quick.array,0,6);
+	System.out.println("Target will be:" + quick.pivot);
     }
     
 }
