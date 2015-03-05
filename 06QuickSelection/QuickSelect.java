@@ -27,11 +27,12 @@ public class QuickSelect{
 	//copy over elements outside of range into d
 	int something = 0;
 	int something2 = ary.length-1;
-	//	System.arraycopy(ary,something,d,something,si-something);
-	//	System.arraycopy(ary,something2,d,something2,something2-ei-1);
+	// 	System.arraycopy(ary,something,d,something,si-something);
+	// 	System.arraycopy(ary,something2,d,something2,something2-ei-1);
 	//select the pivot point
 	Random r  = new Random();
-	int tIndex = r.nextInt(array.length); // index of target
+	int tIndex = r.nextInt(ei - si) + si;	
+	//	int tIndex = r.nextInt(array.length); // index of target
 	int target = array[tIndex]; // target integer
 	pivot = target;
 
