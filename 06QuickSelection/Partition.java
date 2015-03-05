@@ -3,6 +3,15 @@ import java.util.Random;
 public class Partition{
  
     public int value = -1;
+    public int[] arr;
+
+    public Partition(int numElements){
+	Random rand = new Random();
+	int[] arr = new int[numElements];
+	for(int i = 0; i < arr.length; i++){
+	    arr[i] = (10 * rand.nextInt());
+	}
+    }
 
     public void partition(int[] array){
 	Random r  = new Random();
@@ -26,19 +35,18 @@ public class Partition{
 	}
     }
 
-    public static String printArray(int[] array){
+    public String toString(){
 	String result = "";
-	for(int i = 0; i < array.length; i++){
-	    result += array[i] + " ";
+	for(int i = 0; i < arr.length; i++){
+	    result = result + arr[i] + " ";
 	}
 	return result;
     }
     
     public static void main(String[]args){
 	
-	Partition part = new Partition();
-	int[] tester = {1,6,4,5,2,3,6,6000};
-	System.out.println(part.value);
+	Partition part = new Partition(10);
+	System.out.println(part);
     }
 
 }
