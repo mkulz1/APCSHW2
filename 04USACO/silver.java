@@ -80,6 +80,40 @@ public class silver{
 	travel(x+1,y,steps+1);
 	travel(x-1,y,steps+1);
     }
+
+    public static int process(char[][]board,int x0,int yo,int x1,int y1,int steps){
+	if(steps == 0){
+	    if(x0 == x1 && y0 == y1){
+		return 1;
+	    }else{
+		return 0;
+	    }
+	}
+	char here = ' ';
+	try{
+	    here = board[x0][y0];
+	}catch{ ArrayIndexOutofBoundsException E  
+		}
+    }
+
+    // Cellular Automata Method
+    public static int process(char[][]board,int x0,int yo,int x1,int y1,int maxSteps){
+	int[][][]calcboard = new int [board.length][board[0].length][2];
+	int steps = 1;
+	while(steps <= maxSteps){
+	    for(int r = 0; r < board.length; r++){
+		for(int c = 0; c < board[0].length; c++){
+		    if(board[r][c] != '*'){
+			calcboard[r][c][steps%2] = 0;
+			if(r < board.length - 1){
+			    calcboard[r][c][steps%2]+=calcboard[r+1][c][ (steps+1) % 2];
+			}
+		    }
+		}
+	    }
+	}
+    }
+    }
     
     public static void main(String[]args){
 	
