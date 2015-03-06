@@ -28,13 +28,13 @@ public class QuickSelect{
 	    if(ary[i] < target){
 		d[rIndex] = ary[i];
 		rIndex++;
-	    }else{
+	    }else if (ary[i] > target){
 		d[lIndex] = ary[i];
 		lIndex--;
 	    }
 	}
 	d[rIndex] = ary[tIndex];
-
+	
 	//copy over elements outside of range into d
 	for (int i = si - 1; i >= 0; i --){
 	    d[i] = ary[i];
