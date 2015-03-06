@@ -24,19 +24,19 @@ public class QuickSelect{
 
     public void partition(int[] ary,int si, int ei){
 	int[] d = new int[ary.length];
-
-	//copy over elements outside of range into d
-
-
+	
 	//select the pivot point
 	Random r  = new Random();
-	int tIndex = r.nextInt(ei - si) + si; // keeps targer in Range
-	int target = array[tIndex]; // target integer
+	int tIndex = r.nextInt(ei - si) + si;
+	int target = array[tIndex]; // Target/Pivot
 	pivot = target;
 
 	//for elements in range
 	int rIndex = si;
 	int lIndex = ei;
+
+	d[rIndex] = ary[tIndex];
+
 	for(int i = si; i <= ei; i++){
 	    if(ary[i] < target){
 		d[rIndex] = ary[i];
@@ -46,16 +46,29 @@ public class QuickSelect{
 		lIndex--;
 	    }
 	}
-	if(rIndex == lIndex)
-	    d[rIndex] = target;
-    }
 
+	//copy over elements outside of range into d
+	for (int i = si - 1; i >= 0; i --){
+	    d[i] = ary[i];
+	}
+	for (int i = ei + 1; i < ary.length; i ++){
+	    d[i] = ary[i];
+	}
+
+	String dArray = "";
+	for(int i = 0; i < d.length; i++){
+	    dArray += d[i] + " ";
+	}
+	System.out.println("New: " + dArray);
+    }
+    
     public static void main(String[]args){
 	
 	QuickSelect quick = new QuickSelect(10);
-	System.out.println(quick);
+	System.out.println("Old: " + quick);
 	quick.partition(quick.array,0,6);
-	System.out.println("Target will be:" + quick.pivot);
+	System.out.println("Target: " + quick.pivot);
+	System.out.println("After Quick Select:");
     }
     
 }
