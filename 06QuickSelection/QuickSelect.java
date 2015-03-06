@@ -42,11 +42,7 @@ public class QuickSelect{
 	for (int i = ei + 1; i < ary.length; i ++){
 	    d[i] = ary[i];
 	}
-	/*
-	String dArray = "";
-	for(int i = 0; i < d.length; i++){
-	    dArray += d[i] + " ";
-	    }*/
+
 	System.out.println("Target: " + target);
        	System.out.println("New: " + arrayPrint(d));
 
