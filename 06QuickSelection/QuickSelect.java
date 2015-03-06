@@ -35,8 +35,6 @@ public class QuickSelect{
 	int rIndex = si;
 	int lIndex = ei;
 
-	d[rIndex] = ary[tIndex];
-
 	for(int i = si; i <= ei; i++){
 	    if(ary[i] < target){
 		d[rIndex] = ary[i];
@@ -46,6 +44,7 @@ public class QuickSelect{
 		lIndex--;
 	    }
 	}
+	d[rIndex] = ary[tIndex];
 
 	//copy over elements outside of range into d
 	for (int i = si - 1; i >= 0; i --){
@@ -66,7 +65,7 @@ public class QuickSelect{
 	
 	QuickSelect quick = new QuickSelect(10);
 	System.out.println("Old: " + quick);
-	quick.partition(quick.array,0,6);
+	quick.partition(quick.array,0,9);
 	System.out.println("Target: " + quick.pivot);
 	System.out.println("After Quick Select:");
     }
