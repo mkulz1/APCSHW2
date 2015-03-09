@@ -48,7 +48,7 @@ public class Sorts{
     }
 
     // In place
-    public static int qsPlace(int[] ary, int n, int si, int ei){
+    public static int partPlace(int[] ary, int n, int si, int ei){
 
 	int tIndex = r.nextInt(ei - si + 1) + si;
 	int target = ary[tIndex]; // Target/Pivot
@@ -76,47 +76,29 @@ public class Sorts{
 	if (lIndex == n - 1){
 	    return ary[lIndex];
 	} else if(lIndex < n - 1) {
-	    return qsPlace(ary, n, lIndex, ei);
+	    return partPlace(ary, n, lIndex, ei);
 	}else{
-	    return qsPlace(ary, n, si, lIndex);
+	    return partPlace(ary, n, si, lIndex);
 	}
     }
 
     //QuickSelect
-    //    public static int quickSelect(int ary[], int n){
-
-    //}
+    public static int quickSelect(int ary[], int n){
+	return partPlace(ary, n, 0, ary.length - 1);
+    }
 
     //QuickSort
     public static void quickSort(int[] ary){
        
     }
 
-    // In-place version
-   public static void part(int[] ary,int si, int ei){
-
-	int tIndex = r.nextInt(ei - si + 1) + si;
-	int target = ary[tIndex]; // Target/Pivot
-
-	int lIndex = si;
-	int rIndex = ei;
-	
-	for(int i = si; i <= ei; i++){
-	    if(ary[i] < target){
-        
-	    }else if (ary[i] > target){
-		
-	    }
-
-	}
-   }
     public static void main(String[]args){
 	
 	int[] tester = {5,97,34,12,67,42,76,99,15,2};
 	System.out.println("Old: " + arrayPrint(tester));
 	quickSelect(tester,0,9);
 
-	//	qsPlace(tester,3,1,1);
+	quickSelect(tester,3);
     }
     
 }
