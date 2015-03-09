@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.lang.*;
 
-public class QuickSelect{
+public class Sorts{
 
     public static Random r = new Random();
     
@@ -13,7 +13,7 @@ public class QuickSelect{
 	return result;
     }
 
-    public static void partition(int[] ary,int si, int ei){
+    public static void quickSelect(int[] ary,int si, int ei){
       	int[] d = new int[ary.length];
 	for(int i = 0; i < ary.length; i++){
 	    if(i < si || i > ei){
@@ -47,6 +47,51 @@ public class QuickSelect{
        	System.out.println("New: " + arrayPrint(d));
     }
 
+    // In place
+    public static int qsPlace(int[] ary, int n, int si, int ei){
+
+	int tIndex = r.nextInt(ei - si + 1) + si;
+	int target = ary[tIndex]; // Target/Pivot
+	int lIndex = si;
+	int rIndex = ei;
+
+	//for elements between si and ei:
+	for (int i = si; i <= ei; i ++){
+	    if (ary[i] < target){
+		int hold = ary[lIndex];
+		ary[lIndex] = ary[i];
+		ary[i] = ary[lIndex];
+		lIndex ++;
+	    }else if (ary[i] > target){
+	        int hold = ary[rIndex];
+		ary[rIndex] = ary[i];
+		ary[i] = hold;
+		rIndex --;
+	    }
+	}
+	ary[lIndex] = target;
+	System.out.println(target);
+	System.out.println(arrayPrint(ary));
+
+	if (lIndex == n - 1){
+	    return ary[lIndex];
+	} else if(lIndex < n - 1) {
+	    return qsPlace(ary, n, lIndex, ei);
+	}else{
+	    return qsPlace(ary, n, si, lIndex);
+	}
+    }
+
+    //QuickSelect
+    //    public static int quickSelect(int ary[], int n){
+
+    //}
+
+    //QuickSort
+    public static void quickSort(int[] ary){
+       
+    }
+
     // In-place version
    public static void part(int[] ary,int si, int ei){
 
@@ -63,13 +108,16 @@ public class QuickSelect{
 		
 	    }
 
+	}
    }
     public static void main(String[]args){
 	
 	int[] tester = {5,97,34,12,67,42,76,99,15,2};
 	System.out.println("Old: " + arrayPrint(tester));
-	partition(tester,0,9);
+	quickSelect(tester,0,9);
+
+	//	qsPlace(tester,3,1,1);
     }
     
 }
-  
+
