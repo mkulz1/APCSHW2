@@ -55,12 +55,12 @@ public class Sorts{
 	int lIndex = si;
 	int rIndex = ei;
 
-	//for elements between si and ei:
+	//In boundary
 	for (int i = si; i <= ei; i ++){
 	    if (ary[i] < target){
 		int hold = ary[lIndex];
 		ary[lIndex] = ary[i];
-		ary[i] = ary[lIndex];
+		ary[i] = hold;
 		lIndex ++;
 	    }else if (ary[i] > target){
 	        int hold = ary[rIndex];
@@ -70,8 +70,8 @@ public class Sorts{
 	    }
 	}
 	ary[lIndex] = target;
-	System.out.println(target);
-	System.out.println(arrayPrint(ary));
+	//	System.out.println(target);
+	//	System.out.println(arrayPrint(ary));
 
 	if (lIndex == n - 1){
 	    return ary[lIndex];
@@ -95,10 +95,10 @@ public class Sorts{
     public static void main(String[]args){
 	
 	int[] tester = {5,97,34,12,67,42,76,99,15,2};
-	System.out.println("Old: " + arrayPrint(tester));
+       	System.out.println("Old: " + arrayPrint(tester));
 	quickSelect(tester,0,9);
 
-	quickSelect(tester,3);
+	System.out.println(quickSelect(tester,3));
     }
     
 }
