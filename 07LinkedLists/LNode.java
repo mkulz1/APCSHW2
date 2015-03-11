@@ -21,9 +21,10 @@ public class LNode{
     
     public String toString(){
 	String result = "";
-	result += value;
+	while(!this.getNext().equals(null)){   
+	    result += this.getValue() + " ";
+	    result += this.getNext().toString();
+		}
 	return result;
     }
-    
-    
 }
