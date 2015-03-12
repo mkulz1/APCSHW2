@@ -36,6 +36,12 @@ public class MyLinkedList{
 	current.setValue(value);
     } 
 
+    public void add(int value){
+	LNode t = new LNode();
+	current = head;
+	head = t;
+    }
+
     public String toString(){
 	String result = "[ ";
 	current = head;
