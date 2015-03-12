@@ -12,6 +12,30 @@ public class MyLinkedLIst{
 	size = 0;
     }
 
+    public int get(int index){
+	if( index < 0 || index >= size) {
+	    throw new ArrayIndexOutOfBoundsException();
+	}
+	current = head;
+	while(index != 0) {
+	    current = current.getNext();
+	    index --;
+	}
+	return current.getValue();
+    }
+
+    public void set(int index, int value){
+	if (index < 0 || index >= size){
+	    throw new ArrayIndexOutOfBoundsException();
+	}
+	current = head;
+	while( index != 0) {
+	    current = current.getNext();
+	    index --;
+	}
+	current.setValue(value);
+    } 
+
     public String toString(){
 	String result = "[";
 	current = head;
