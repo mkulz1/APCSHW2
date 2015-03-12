@@ -3,6 +3,10 @@ public class LNode{
     private int value;
     private LNode next;
 
+    public LNode(){
+	value = 0;
+    }
+
     public LNode getNext(){
 	return this.next;
     }
@@ -20,10 +24,11 @@ public class LNode{
     }
     
     public String toString(){
-	String result = "";
-	while(!this.getNext().equals(null)){   
+	String result = "[ ";
+	while(this.getNext() != null){   
 	    result += this.getValue() + " ";
 	    result += this.getNext().toString();
+	    result += " ]";
 		}
 	return result;
     }

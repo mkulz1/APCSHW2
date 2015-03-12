@@ -1,15 +1,15 @@
 import java.util.*;
 
-public class MyLinkedLIst{
+public class MyLinkedList{
 
-    private lNode head;
-    private lNode current;
+    private LNode head;
+    private LNode current;
     private int size;
 
     public MyLinkedList(){
-	head = new LNode(0);
-	current = new LNode(0);
-	size = 0;
+	head = new LNode();
+	current = new LNode();
+	size = 1;
     }
 
     public int get(int index){
@@ -37,13 +37,22 @@ public class MyLinkedLIst{
     } 
 
     public String toString(){
-	String result = "[";
+	String result = "[ ";
 	current = head;
 	while(current.getNext() != null){
-	    result += current.toString() + " ";
+	    result += current.toString() + ",";
 	    current = current.getNext();
 	}
 	result += current.toString();
-	return result + "]";
+	return result.substring(0,result.length()-1) + "]";
     }
+
+    public static void main(String[]args){
+
+	LNode node = new LNode();
+	MyLinkedList list = new MyLinkedList();
+	list.set(0,8);
+	System.out.println(list);
+    }
+
 }
