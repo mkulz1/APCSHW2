@@ -3,10 +3,13 @@ public class LNode{
     private int value;
     private LNode next;
 
+    public LNode(int value){
+	value = value;
+    }
     public LNode(){
 	value = 0;
     }
-
+    
     public LNode getNext(){
 	return this.next;
     }
