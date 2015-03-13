@@ -46,12 +46,11 @@ public class MyLinkedList{
     public String toString(){
 	String result = "[ ";
 	current = head;
-	while(current.getNext() != null){
-	    result += current.toString() + ",";
+	for (int i = 0; i < size; i ++){
+	    result += current.getValue() + ",";
 	    current = current.getNext();
 	}
-	result += current.toString();
-	return result.substring(0,result.length()-1) + "]";
+	return result.substring(0,result.length()-1) + " ]";
     }
 
     public static void main(String[]args){
