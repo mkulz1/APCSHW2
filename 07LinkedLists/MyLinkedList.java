@@ -4,6 +4,7 @@ public class MyLinkedList{
 
     private LNode head;
     private LNode current;
+    private LNode tail;
     private int size;
 
     public MyLinkedList(){
@@ -55,7 +56,6 @@ public class MyLinkedList{
 
     public static void main(String[]args){
 
-	LNode node = new LNode();
 	MyLinkedList list = new MyLinkedList();
 	list.set(0,8);
 	System.out.println(list);
