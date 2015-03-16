@@ -3,7 +3,7 @@ import java.util.*;
 public class MyLinkedList{
 
     private LNode head;
-    private LNode current;
+    private LNode current; // used as a holder in many methods
     private LNode tail;
     private int size;
 
@@ -104,10 +104,27 @@ public class MyLinkedList{
 
 	MyLinkedList list = new MyLinkedList();
 	list.add(5);
+	list.add(8);
+	list.add(7);
+	list.add(3);
+	list.add(11);
+	list.add(0);
+	list.add(2);
+	list.add(1);
+	list.add(4);
+	list.add(6);
+	list.add(34);
 	list.add(5);
 	list.set(0,6);
 	System.out.println(list);
 	list.remove(1);
+	System.out.println("Removed #1");
+	System.out.println(list);
+	list.remove(4);
+	System.out.println("Removed #4");
+	System.out.println(list);
+	list.remove(5);
+	System.out.println("Removed #5");
 	System.out.println(list);
     }
 
