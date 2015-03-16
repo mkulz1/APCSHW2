@@ -4,6 +4,10 @@ import java.lang.*;
 public class Sorts{
 
     public static Random r = new Random();
+
+    public static String name(){
+	return "kulyk.mariya";
+    }
     
     public static String arrayPrint(int[] array){
 	String result = "";

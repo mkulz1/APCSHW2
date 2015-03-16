@@ -1,10 +1,10 @@
 import java.util.*;
 
-public class MyLinkedList{
+public class MyLinkedList<T>{
 
-    private LNode head;
-    private LNode current; // used as a holder in many methods
-    private LNode tail;
+    private LNode<T> head;
+    private LNode<T> current; // used as a holder in many methods
+    private LNode<T> tail;
     private int size;
 
 
@@ -14,13 +14,13 @@ public class MyLinkedList{
     
     
     public MyLinkedList(){
-	head = new LNode(0);
-	current = new LNode(0);
-	tail = new LNode(0);
+	head = new LNode<T>(0);
+	current = new LNode<T>(0);
+	tail = new LNode<T>(0);
 	size = 0;
     }
     
-    public int get(int index){
+    public T get(int index){
 	if( index < 0 || index >= size) {
 	    throw new ArrayIndexOutOfBoundsException();
 	}
@@ -29,10 +29,10 @@ public class MyLinkedList{
 	    current = current.getNext();
 	    index --;
 	}
-	return current.getValue();
+	return current.getData();
     }
 
-    public void set(int index, int value){
+    public void set(int index, T value){
 	if (index < 0 || index >= size){
 	    throw new ArrayIndexOutOfBoundsException();
 	}
@@ -40,7 +40,7 @@ public class MyLinkedList{
 	for(int i = 0; i < index; i++){
 		current = current.getNext();
 	    }
-	current.setValue(value);
+	current.setData(value);
     } 
 
     public boolean add(int value){
@@ -57,11 +57,11 @@ public class MyLinkedList{
 	return true;
     }
     
-    public int remove(int index){
+    public T remove(int index){
 	if (index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
-	LNode r;
+	LNode<T> r;
 	if (index == 0){
 	    r = head;
 	    head  = r.getNext();
@@ -83,7 +83,7 @@ public class MyLinkedList{
 	    current.setNext(r.getNext());
 	}
 	size --;
-	return r.getValue();
+	return r.getData();
     }
     
     public int size(){
@@ -94,7 +94,7 @@ public class MyLinkedList{
 	String result = "[ ";
 	current = head;
 	for (int i = 0; i < size; i ++){
-	    result += current.getValue() + ",";
+	    result += current.getData() + ",";
 	    current = current.getNext();
 	}
 	return result.substring(0,result.length()-1) + " ]";
