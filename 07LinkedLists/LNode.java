@@ -3,27 +3,27 @@ public class LNode{
     private int value;
     private LNode next;
 
-    public LNode(int value){
-	value = value;
+    public LNode(int v){
+	value = v;
     }
     public LNode(){
 	value = 0;
     }
     
     public LNode getNext(){
-	return this.next;
+	return next;
     }
 
     public int getValue(){
-	return this.value;
+	return value;
     }
 
-    public void setNext(LNode next){
-	this.next = next;
+    public void setNext(LNode n){
+	next = n;
     }
 
-    public void setValue(int value){
-	this.value = value;
+    public void setValue(int v){
+	value = v;
     }
     
     public String toString(){

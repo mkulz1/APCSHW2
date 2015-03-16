@@ -8,9 +8,10 @@ public class MyLinkedList{
     private int size;
 
     public MyLinkedList(){
-	head = new LNode();
-	current = new LNode();
-	size = 1;
+	head = new LNode(0);
+	current = new LNode(0);
+	tail = new LNode(0);
+	size = 0;
     }
 
     public int get(int index){
@@ -30,17 +31,28 @@ public class MyLinkedList{
 	    throw new ArrayIndexOutOfBoundsException();
 	}
 	current = head;
-	while( index != 0) {
-	    current = current.getNext();
-	    index --;
-	}
+	for(int i = 0; i < index; i++){
+		current = current.getNext();
+	    }
 	current.setValue(value);
     } 
 
-    public void add(int value){
-	LNode t = new LNode();
-	current = head;
-	head = t;
+    public boolean add(int value){
+	LNode t = new LNode(value);
+	if( size == 0){
+	    head = t;
+	    tail = head;
+	    current = head;
+	}else{
+	    tail.setNext(t);
+	    tail = t;
+	}
+	size ++;
+	return true;
+    }
+
+    public int size(){
+	return size;
     }
 
     public String toString(){
@@ -56,7 +68,8 @@ public class MyLinkedList{
     public static void main(String[]args){
 
 	MyLinkedList list = new MyLinkedList();
-	list.set(0,8);
+	list.add(5);
+	list.add(5);
 	System.out.println(list);
     }
 
