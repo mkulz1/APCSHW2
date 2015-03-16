@@ -14,9 +14,6 @@ public class MyLinkedList<T>{
     
     
     public MyLinkedList(){
-	head = new LNode<T>(0);
-	current = new LNode<T>(0);
-	tail = new LNode<T>(0);
 	size = 0;
     }
     
@@ -43,15 +40,13 @@ public class MyLinkedList<T>{
 	current.setData(value);
     } 
 
-    public boolean add(int value){
-	LNode t = new LNode(value);
+    public boolean add(T value){
 	if( size == 0){
-	    head = t;
 	    tail = head;
-	    current = head;
 	}else{
-	    tail.setNext(t);
-	    tail = t;
+	    LNode<T> tL = new LNode<T>(value);
+	    tail.setNext(tL);
+	    tail = tL.getNext();
 	}
 	size ++;
 	return true;
@@ -102,7 +97,8 @@ public class MyLinkedList<T>{
 
     public static void main(String[]args){
 
-	MyLinkedList list = new MyLinkedList();
+	MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+
 	list.add(5);
 	list.add(8);
 	list.add(7);
