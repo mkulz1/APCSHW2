@@ -16,8 +16,9 @@ public class Sorts{
 	}
 	return result;
     }
-
-    public static void quickSelect(int[] ary,int si, int ei){
+    
+    // Not in place version
+    public static void part(int[] ary,int si, int ei){
       	int[] d = new int[ary.length];
 	for(int i = 0; i < ary.length; i++){
 	    if(i < si || i > ei){
@@ -51,58 +52,63 @@ public class Sorts{
        	System.out.println("New: " + arrayPrint(d));
     }
 
-    // In place
-    public static int partPlace(int[] ary, int n, int si, int ei){
+    // Quick Sort Methods
 
-	int tIndex = r.nextInt(ei - si + 1) + si;
-	int target = ary[tIndex]; // Target/Pivot
-	int lIndex = si;
-	int rIndex = ei;
+    public static void quickSort(int[] ary){
+	quickSort(ary, 0, ary.length - 1);
+    }
+    public static void quickSort(int[] ary, int si, int ei){
+        if (si < ei){
+	    int index = parition(ary, si, ei);
+	    quickSort(ary, si, index - 1);
+	    quickSort(ary, index + 1, ei);
+	}
+    }
 
-	//In boundary
-	for (int i = si; i <= ei; i ++){
-	    if (ary[i] < target){
-		int hold = ary[lIndex];
-		ary[lIndex] = ary[i];
-		ary[i] = hold;
-		lIndex ++;
-	    }else if (ary[i] > target){
-	        int hold = ary[rIndex];
-		ary[rIndex] = ary[i];
-		ary[i] = hold;
-		rIndex --;
+    public static int parition(int[] ary, int si, int ei){
+	int pIndex = r.nextInt(ei + 1 - si) + si;
+	int pivot = ary[pIndex];
+	int end = ei;
+	int start = si;
+	while (start <= end && si != ei) {
+	    if (ary[start]<pivot) { 
+		int x = ary[start];
+		ary[start] = ary[si];
+		ary[si] = x;
+		si++;
+		if(x == pivot){
+		    pIndex = si;
+		}else if (ary[start] == pivot) {
+		    pIndex = start;
+		}
+		start++;
+	    } else if (ary[start] > pivot) {
+		int x = ary[start];
+		ary[start] = ary[ei];
+		ary[ei] = x;
+		ei--;
+		if(x == pivot){
+		    pIndex = ei;
+		}else if (ary[start] == pivot) {
+		    pIndex = start;
+		}
+	    } else {
+		start++;
 	    }
 	}
-	ary[lIndex] = target;
-	//	System.out.println(target);
-	//	System.out.println(arrayPrint(ary));
-
-	if (lIndex == n - 1){
-	    return ary[lIndex];
-	} else if(lIndex < n - 1) {
-	    return partPlace(ary, n, lIndex, ei);
-	}else{
-	    return partPlace(ary, n, si, lIndex);
-	}
-    }
-
-    //QuickSelect
-    public static int quickSelect(int ary[], int n){
-	return partPlace(ary, n, 0, ary.length - 1);
-    }
-
-    //QuickSort
-    public static void quickSort(int[] ary){
-       
+	int x = ary[si];
+	ary[si] = pivot;
+	ary[pIndex] = x;
+	return pIndex;
     }
 
     public static void main(String[]args){
 	
 	int[] tester = {5,97,34,12,67,42,76,99,15,2};
        	System.out.println("Old: " + arrayPrint(tester));
-	quickSelect(tester,0,9);
+	quickSort(tester);
 
-	System.out.println(quickSelect(tester,3));
+	System.out.println(arrayPrint(tester));
     }
     
 }
