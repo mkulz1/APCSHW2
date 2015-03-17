@@ -101,7 +101,7 @@ public class Sorts{
 	ary[pIndex] = x;
 	return pIndex;
     }
-
+    
     public static void main(String[]args){
 	
 	int[] tester = {5,97,34,12,67,42,76,99,15,2};

@@ -41,12 +41,14 @@ public class MyLinkedList<T>{
     } 
 
     public boolean add(T value){
+	LNode<T> tL = new LNode<T>(value);
 	if( size == 0){
+	    head = tL;
 	    tail = head;
+	    current = tL;
 	}else{
-	    LNode<T> tL = new LNode<T>(value);
 	    tail.setNext(tL);
-	    tail = tL.getNext();
+	    tail = tL;
 	}
 	size ++;
 	return true;
