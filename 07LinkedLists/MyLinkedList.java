@@ -1,6 +1,28 @@
 import java.util.*;
 
-public class MyLinkedList<T>{
+public class MyLinkedList<T> implements Iterable<T>{
+
+    public class MLLIterator<T> implements Iterator<T>{
+
+	private LNode<T> node;
+
+	public MLLIterator(LNode<T> no){
+	    node = no;
+	}
+
+	public boolean hasNext(){
+
+	}
+
+	public T next(){
+
+	}
+
+	public void remove(){
+	    throw new UnSupportedOperationException();
+	}
+
+    }
 
     private LNode<T> head;
     private LNode<T> current; // used as a holder in many methods
