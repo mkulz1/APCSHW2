@@ -19,17 +19,21 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 
 	public void remove(){
-	    throw new UnSupportedOperationException();
+	    throw new UnsupportedOperationException();
 	}
-
+	
     }
-
+    
+    public Iterator<T> iterator(){
+	return new MLLIterator<T>(head);
+    }
+    
     private LNode<T> head;
     private LNode<T> current; // used as a holder in many methods
     private LNode<T> tail;
     private int size;
-
-
+    
+    
     public String name(){
 	return "kulyk.mariya";
     }
