@@ -5,14 +5,13 @@ public class MyLinkedList<T> implements Iterable<T>{
     public class MLLIterator<T> implements Iterator<T>{
 
 	private LNode<T> node;
-	int length;
 
 	public MLLIterator(LNode<T> no){
 	    node = no;
 	}
 
 	public boolean hasNext(){
-	    return (tail!=null);
+	    return current!=null;
 	}
 
 	public T next(){
@@ -22,7 +21,6 @@ public class MyLinkedList<T> implements Iterable<T>{
 		return ans;
 	    }else{
 		throw new NoSuchElementException();
-		return;
 	    }
 	}
 
@@ -40,12 +38,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     private LNode<T> current; // used as a holder in many methods
     private LNode<T> tail;
     private int size;
-    
-    
-    public String name(){
-	return "kulyk.mariya";
-    }
-    
+   
     
     public MyLinkedList(){
 	size = 0;
@@ -86,6 +79,30 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	size ++;
 	return true;
+    }
+
+    public boolean add(int index, T value){
+	if (index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
+	LNode<T> add = new LNode<T>(value);
+	if (index == 0){
+	    add.setNext(head);
+	    head = add;
+	}else if(index == size()){
+	    add(value);
+	}else{
+	    current = head;
+	    for (int i = 0; i < index - 1; i ++){
+		current = current.getNext();
+	    }
+	    LNode<T> next = current.getNext();
+	    current.setNext(add);
+	    add.setNext(next);
+	}
+	size ++;
+	return true;
+	
     }
     
     public T remove(int index){
@@ -129,6 +146,14 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    current = current.getNext();
 	}
 	return result.substring(0,result.length()-1) + " ]";
+    }
+
+    public String name(){
+	return "kulyk.mariya";
+    }
+    
+    public boolean empty(){
+	return (size() == 0);
     }
 
     public static void main(String[]args){
