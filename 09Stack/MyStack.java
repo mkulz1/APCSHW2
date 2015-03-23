@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyStack<T>{
+public class MyStack<T> extends MyLinkedList<T>{
 
     private MyLinkedList<T> stack;
 
