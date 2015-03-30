@@ -65,11 +65,17 @@ public class MyDeque<T>{
     }
 
     public T getFirst(){
-
+	if (size == 0)
+	    throw new NoSuchElementException();
+     
+	return (T)deq[head];
     }
 
     public T getLast(){
-
+	if (size == 0)
+	    throw new NoSuchElementException();
+	
+	return (T)deq[tail];
     }
 
     public void grow(){
