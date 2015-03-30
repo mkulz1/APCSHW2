@@ -51,7 +51,17 @@ public class MyDeque<T>{
     }
 
     public T removeLast(){
+	if (size == 0)
+	    throw new NoSuchElementException();
 
+	size--;
+	T removed = (T)deq[tail];
+	tail--;
+
+	if (head < 0)
+	    tial = deq.length - 1; // wraps around
+
+	return removed;
     }
 
     public T getFirst(){
