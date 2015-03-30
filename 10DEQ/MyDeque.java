@@ -36,6 +36,24 @@ public class MyDeque<T>{
 	size++;
     }
 
+    public T removeFirst(){
+	if (size == 0)
+	    throw new NoSuchElementException();
+
+	size--;
+	T hold = (T)deq[head];
+	head++;
+
+	if (head > deq.length - 1)
+	    head = 0; // wraps around
+
+	return hold;
+    }
+
+    public T removeLast(){
+
+    }
+
     public T getFirst(){
 
     }
@@ -51,3 +69,8 @@ public class MyDeque<T>{
     public void shrink(){
 
     }
+
+    public static void main(String[]args){
+
+    }
+}
