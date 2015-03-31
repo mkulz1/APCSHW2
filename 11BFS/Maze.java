@@ -10,11 +10,24 @@ public class Maze{
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
-
+    // Methods from old MazeSolver
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
     }
-
+    private String color(int foreground,int background){
+	return ("\033[0;" + foreground + ";" + background + "m");
+    }
+    public void clearTerminal(){
+	System.out.println(clear);
+    }
+    public void wait(int millis){
+	try {
+	    Thread.sleep(millis);
+	}
+	catch (InterruptedException e) {
+	}
+    }
+    
     // Constructor
     public Mazesolver(String filename){
 	startx = -1;
@@ -54,8 +67,22 @@ public class Maze{
 	}
     }
 
-    // Frontier Class
+    // Frontier Class (Coordinates)
     public class Frontier{
+	private int x;
+	private int y;
+
+	public Frontier(int x, int y){
+	    this.x = x;
+	    this.y = y;
+	}
+
+	public int getX(){
+	    return x;
+	}
+	public int getY(){
+	    return y;
+	}
 
     }
 
