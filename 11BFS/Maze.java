@@ -104,7 +104,12 @@ public class Maze{
 
     // METHODS
     public boolean solveBFS(boolean animate){
-
+	int x = 0;
+	int y = 0;
+	if(maze[x][y] == 'E'){
+	    return true;
+	}
+	if(maze[x][y] ==
     }
 
     public boolean solveDFS(boolean animate){
