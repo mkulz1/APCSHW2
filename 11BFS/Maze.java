@@ -6,9 +6,11 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
+
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
+
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
     }
@@ -52,6 +54,11 @@ public class Maze{
 	}
     }
 
+    // Frontier Class
+    public class Frontier{
+
+    }
+
     public String toString(){
 	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
 	for(int i = 0; i < maxx * maxy; i++){
@@ -66,6 +73,23 @@ public class Maze{
 	    }
 	}
 	return hide + go(0,0) + ans + "\n" + show + color(37,40);
+    }
+
+    // METHODS
+    public boolean solveBFS(boolean animate){
+
+    }
+
+    public boolean solveDFS(boolean animate){
+
+    }
+
+    public boolean solveBFS(){
+	return solveBFS(false);
+    }
+
+    public boolean solveDFS(){
+	return solveDFS(false);
     }
 
     public static void main(String[]args){
