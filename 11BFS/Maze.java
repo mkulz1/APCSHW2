@@ -111,9 +111,14 @@ public class Maze{
 	}
 	if(maze[x][y] ==
     }
+    }
 
+    public boolean solve(boolean animate, int mode){
+	
+    }
+    
     public boolean solveDFS(boolean animate){
-
+	
     }
 
     public boolean solveBFS(){
