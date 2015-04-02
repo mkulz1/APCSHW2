@@ -2,9 +2,8 @@ import java.util.*;
 
 public class Frontier{
   
-    private MyDeque deq;
+    private MyDeque<Coordinate> deq;
     private boolean bfs;
-    private Coordinate[] deq; 
     
     public Frontier(int mode){
 	if(mode == 0){
@@ -12,10 +11,18 @@ public class Frontier{
 	}else{
 	    bfs = false;
 	}
+	deq = new MyDeque<Coordinate>();
+    }
+    
+    public boolean add(Coordinate c){
+	deq.addFirst(c);
+	return true;
     }
 
-    public boolean add(Coordinate c){
-
+    
+    public static void main(String[]args){
+	Frontier f = new Frontier(0);
+	System.out.println(f);
     }
 
 }

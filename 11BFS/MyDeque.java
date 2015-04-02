@@ -59,7 +59,7 @@ public class MyDeque<T>{
 	tail--;
 
 	if (head < 0)
-	    tial = deq.length - 1; // wraps around
+	    tail = deq.length - 1; // wraps around
 
 	return removed;
     }
@@ -103,6 +103,25 @@ public class MyDeque<T>{
 	head = 0;
 	tail = c - 1;
 	deq = ret;
+    }
+    
+    public String toString(){
+	String str = "[ ";
+	if (size > 0){
+	    if (head <= tail){
+		for (int i = head; i <= tail; i ++){
+		    str += deq[i] + " ";
+		}
+	    }else{
+		for (int i = head; i < deq.length; i ++){
+		    str += deq[i] + " ";
+		}
+		for (int i = 0; i <= tail; i ++){
+		    str += deq[i] + " ";
+		}
+	    }
+	}
+	return str + "]";
     }
     
     public static void main(String[]args){
