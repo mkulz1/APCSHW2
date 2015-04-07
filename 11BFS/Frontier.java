@@ -14,9 +14,12 @@ public class Frontier{
 	deq = new MyDeque<Coordinate>();
     }
     
-    public boolean add(Coordinate c){
+    public void add(Coordinate c){
 	deq.addLast(c);
-	return true;
+    }
+
+    public Coordinate remove(){
+	return deq.removeFirst();
     }
 
     public String toString(){
@@ -34,6 +37,11 @@ public class Frontier{
        	f.add(c);
 	f.add(d);
 
+	System.out.println(f);
+	System.out.println("Head: " + f.deq.getHead());
+	System.out.println("Tail: " + f.deq.getTail());
+
+	f.remove();
 	System.out.println(f);
 	System.out.println("Head: " + f.deq.getHead());
 	System.out.println("Tail: " + f.deq.getTail());
