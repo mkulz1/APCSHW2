@@ -18,11 +18,10 @@ public class Frontier{
 	deq.addFirst(c);
 	return true;
     }
-
     
     public static void main(String[]args){
 	Frontier f = new Frontier(0);
 	System.out.println(f);
     }
-
+    
 }

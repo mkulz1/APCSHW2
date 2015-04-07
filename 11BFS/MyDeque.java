@@ -78,8 +78,16 @@ public class MyDeque<T>{
 	return (T)deq[tail];
     }
 
-    public void grow(){
-
+    public void resize(){
+	if (size == data.length){
+	    Object[] thing = new Object[size*2];
+	    for (int i = 0; i < size; i++){
+		thing[i] = data[ (i+head) % (size)];
+	    }
+	    head = 0;
+	    tail = size - 1;
+	    data = thing;
+	}
     }
 
     public void shrink(){
@@ -106,22 +114,15 @@ public class MyDeque<T>{
     }
     
     public String toString(){
-	String str = "[ ";
+	String str = "[";
 	if (size > 0){
-	    if (head <= tail){
-		for (int i = head; i <= tail; i ++){
-		    str += deq[i] + " ";
-		}
-	    }else{
-		for (int i = head; i < deq.length; i ++){
-		    str += deq[i] + " ";
-		}
-		for (int i = 0; i <= tail; i ++){
-		    str += deq[i] + " ";
-		}
+	    for (int i = 0; i < size-1; i++){
+		str += data[ (head+i) % data.length] + ", ";
 	    }
+	    str += data[tail];
 	}
-	return str + "]";
+	str += "]";
+	return str;
     }
     
     public static void main(String[]args){
