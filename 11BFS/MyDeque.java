@@ -79,14 +79,14 @@ public class MyDeque<T>{
     }
 
     public void resize(){
-	if (size == data.length){
+	if (size == deq.length){
 	    Object[] thing = new Object[size*2];
 	    for (int i = 0; i < size; i++){
-		thing[i] = data[ (i+head) % (size)];
+		thing[i] = deq[ (i + head) % (size)];
 	    }
 	    head = 0;
 	    tail = size - 1;
-	    data = thing;
+	    deq = thing;
 	}
     }
 
@@ -117,9 +117,9 @@ public class MyDeque<T>{
 	String str = "[";
 	if (size > 0){
 	    for (int i = 0; i < size-1; i++){
-		str += data[ (head+i) % data.length] + ", ";
+		str += deq[ (head+i) % deq.length] + ", ";
 	    }
-	    str += data[tail];
+	    str += deq[tail];
 	}
 	str += "]";
 	return str;
