@@ -15,7 +15,7 @@ public class Frontier{
     }
     
     public boolean add(Coordinate c){
-	deq.addFirst(c);
+	deq.addLast(c);
 	return true;
     }
 
@@ -28,11 +28,15 @@ public class Frontier{
 	Coordinate a = new Coordinate(1,8);
 	Coordinate b = new Coordinate(4,9);
 	Coordinate c = new Coordinate(5,7);
-	f.add(a);
+	Coordinate d = new Coordinate(6,6);
+	f.add(a);	
 	f.add(b);
-	f.add(c);
+       	f.add(c);
+	f.add(d);
 
 	System.out.println(f);
+	System.out.println("Head: " + f.deq.getHead());
+	System.out.println("Tail: " + f.deq.getTail());
     }
     
 }

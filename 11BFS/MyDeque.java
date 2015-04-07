@@ -9,13 +9,20 @@ public class MyDeque<T>{
 
     public MyDeque(){
 	deq = new Object[10];
-	head = 5;
-	tail = 4;
+	head = 0;
+	tail = 9;
 	size = 0;
     }
 
     public String name(){
 	return "kulyk.mariya";
+    }
+
+    public int getTail(){
+	return tail;
+    }
+    public int getHead(){
+	return head;
     }
 
     public void addFirst(T value){
