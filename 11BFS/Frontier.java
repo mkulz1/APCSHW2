@@ -14,10 +14,10 @@ public class Frontier{
 	deq = new MyDeque<Coordinate>();
     }
     
-    public boolean add(Coordinate c){
+    /*  public boolean add(Coordinate c){
 	deq.addFirst(c);
 	return true;
-    }
+	}*/
     
     public static void main(String[]args){
 	Frontier f = new Frontier(0);

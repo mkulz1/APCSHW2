@@ -117,16 +117,13 @@ public class Maze{
 	
     }
     
+
+    public boolean solveBFS(boolean animate){
+	return solve(animate,0);
+    }
+
     public boolean solveDFS(boolean animate){
-	
-    }
-
-    public boolean solveBFS(){
-	return solveBFS(false);
-    }
-
-    public boolean solveDFS(){
-	return solveDFS(false);
+	return solve(animate,1);
     }
     
     /**return an array [x1,y1,x2,y2,x3,y3...]
