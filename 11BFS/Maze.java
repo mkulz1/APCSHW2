@@ -99,15 +99,31 @@ public class Maze{
 	Frontier f = new Frontier(mode);
 	Coordinate c = new Coordinate(x,y);
 	f.add(c);
-	/*while( x != targetX || y != targetY){
 
-	    if(checkAround(x+1,y)){
-		f.add(c);
-	    } else if (checkAround(x-1,y)){
+	while( x != targetX || y != targetY){
 	    
-	    x++;
-	    y++;
-	    }*/
+	    for(int i = f.getHead(); i < f.getTail(); i++){
+		
+        	x = f.getFirst().getX();
+		y = f.getFirst().getY();
+
+		if(checkAround(x+1,y)){
+		    c = new Coordinate(x+1,y);
+		    f.add(c);
+		} else if (checkAround(x-1,y)){
+		    c = new Coordinate(x-1,y);
+		    f.add(c);
+		} else if (checkAround(x,y+1)){
+		    c = new Coordinate(x+1,y);
+		    f.add(c);
+		} else if (checkAround(x,y-1)){
+		    c = new Coordinate(x,y-1);
+		    f.add(c);
+		}
+		
+		f.remove();
+	    }   
+	}
 	return true;	
     }
     

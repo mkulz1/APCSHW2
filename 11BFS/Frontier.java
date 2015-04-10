@@ -29,6 +29,10 @@ public class Frontier{
     public int getTail(){
 	return deq.getTail();
     }
+    // Returns Head Coordinate
+    public Coordinate getFirst(){
+	return deq.getFirst();
+    }
 
     public String toString(){
 	return deq.toString();
