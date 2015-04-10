@@ -6,6 +6,8 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
+    private int targetX,targetY;
+    private Frontier f;
 
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
@@ -29,7 +31,7 @@ public class Maze{
     }
     
     // Constructor
-    public Mazesolver(String filename){
+    public Maze(String filename){
 	startx = -1;
 	starty = -1;
 	//read the whole maze into a single string first
@@ -64,26 +66,11 @@ public class Maze{
 		startx = i % maxx;
 		starty = i / maxx;
 	    }
+	    if(c == 'E'){
+		targetX = i % maxx;
+		targetY = i / maxx;
+	    }
 	}
-    }
-
-    // Frontier Class (Coordinates)
-    public class Frontier{
-	private int x;
-	private int y;
-
-	public Frontier(int x, int y){
-	    this.x = x;
-	    this.y = y;
-	}
-
-	public int getX(){
-	    return x;
-	}
-	public int getY(){
-	    return y;
-	}
-
     }
 
     public String toString(){
@@ -103,18 +90,25 @@ public class Maze{
     }
 
     // METHODS
-    /*  public boolean solveBFS(boolean animate){
-	int x = 0;
-	int y = 0;
-	if(maze[x][y] == 'E'){
-	    return true;
-	}
-	if(maze[x][y] ==
-	}*/
-    
+
+    // Mode 0 = BFS  &  Mode 1 = DFS
     
     public boolean solve(boolean animate, int mode){
-	
+	int x = startx;
+	int y = starty; 
+	Frontier f = new Frontier(mode);
+	Coordinate c = new Coordinate(x,y);
+	f.add(c);
+	/*while( x != targetX || y != targetY){
+
+	    if(checkAround(x+1,y)){
+		f.add(c);
+	    } else if (checkAround(x-1,y)){
+	    
+	    x++;
+	    y++;
+	    }*/
+	return true;	
     }
     
 
@@ -125,6 +119,14 @@ public class Maze{
     public boolean solveDFS(boolean animate){
 	return solve(animate,1);
     }
+
+    public boolean checkAround(int x, int y){
+	if(maze[x][y] != '.' && maze[x][y] == ' '){
+	    return true;
+	}else{
+	    return false;
+	}
+    }   
     
     /**return an array [x1,y1,x2,y2,x3,y3...]
      *that contains the coordinates of the solution from start to end.
@@ -132,12 +134,13 @@ public class Maze{
      (otherwise an empty array is returned)
      *Postcondition:  the correct solution is in the returned array
      */
-    public int[] solutionCoordinates(){ 
+    /*public int[] solutionCoordinates(){ 
 	
-    }
+      }*/
     
     public static void main(String[]args){
-
+	Maze m = new Maze("data1.dat");
+	System.out.println(m);
     }
 
 }

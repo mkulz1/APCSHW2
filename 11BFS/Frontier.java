@@ -22,13 +22,21 @@ public class Frontier{
 	return deq.removeFirst();
     }
 
+    // Returns the Index of Each
+    public int getHead(){
+	return deq.getHead();
+    }
+    public int getTail(){
+	return deq.getTail();
+    }
+
     public String toString(){
 	return deq.toString();
     }
     
     public static void main(String[]args){
-	Frontier f = new Frontier(0);
-	Coordinate a = new Coordinate(1,8);
+       	Frontier f = new Frontier(0);
+	/*	Coordinate a = new Coordinate(1,8);
 	Coordinate b = new Coordinate(4,9);
 	Coordinate c = new Coordinate(5,7);
 	Coordinate d = new Coordinate(6,6);
@@ -38,13 +46,22 @@ public class Frontier{
 	f.add(d);
 
 	System.out.println(f);
-	System.out.println("Head: " + f.deq.getHead());
-	System.out.println("Tail: " + f.deq.getTail());
+	System.out.println("Head: " + f.getHead());
+	System.out.println("Tail: " + f.getTail());
 
 	f.remove();
 	System.out.println(f);
-	System.out.println("Head: " + f.deq.getHead());
-	System.out.println("Tail: " + f.deq.getTail());
+	System.out.println("The Head is: " + f.deq.getFirst());
+	System.out.println("Head: " + f.getHead());
+	System.out.println("Tail: " + f.getTail());*/
+	Coordinate a = new Coordinate(4,5);
+	f.add(a);
+	System.out.println(f);
+        a = new Coordinate(7,8);
+	f.add(a);
+	System.out.println(f);
+	f.remove();
+	System.out.println(f);
     }
     
 }
