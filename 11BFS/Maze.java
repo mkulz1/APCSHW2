@@ -63,12 +63,12 @@ public class Maze{
 	    char c = ans.charAt(i);
 	    maze[i % maxx][i / maxx] = c;
 	    if(c == 'S'){
-		startx = i % maxx;
-		starty = i / maxx;
+		starty = i % maxx;
+		startx = i / maxx;
 	    }
 	    if(c == 'E'){
-		targetX = i % maxx;
-		targetY = i / maxx;
+		targetY = i % maxx;
+		targetX = i / maxx;
 	    }
 	}
     }
@@ -101,7 +101,7 @@ public class Maze{
 	f.add(c);
 
 	while( x != targetX || y != targetY){
-	    
+        
 	    for(int i = f.getHead(); i < f.getTail(); i++){
 		
         	x = f.getFirst().getX();
@@ -109,22 +109,29 @@ public class Maze{
 
 		if(checkAround(x+1,y)){
 		    c = new Coordinate(x+1,y);
+		    //   maze[x+1][y] = '.';
 		    f.add(c);
-		} else if (checkAround(x-1,y)){
+		}
+		if (checkAround(x-1,y)){
 		    c = new Coordinate(x-1,y);
+		    //  maze[x-1][y] = '.';
 		    f.add(c);
-		} else if (checkAround(x,y+1)){
-		    c = new Coordinate(x+1,y);
+		} 
+		if (checkAround(x,y+1)){
+		    c = new Coordinate(x,y+1);
+		    //   maze[x][y+1] = '.';
 		    f.add(c);
-		} else if (checkAround(x,y-1)){
+		}
+		if (checkAround(x,y-1)){
 		    c = new Coordinate(x,y-1);
+		    //   maze[x][y-1] = '.';
 		    f.add(c);
 		}
 		
 		f.remove();
-	    }   
+ 	    }   
 	}
-	return true;	
+ 	return true;	
     }
     
 
@@ -137,7 +144,7 @@ public class Maze{
     }
 
     public boolean checkAround(int x, int y){
-	if(maze[x][y] != '.' && maze[x][y] == ' '){
+	if(maze[x][y] != '.' && maze[x][y] != '#' && maze[x][y] == ' '){
 	    return true;
 	}else{
 	    return false;
@@ -156,7 +163,10 @@ public class Maze{
     
     public static void main(String[]args){
 	Maze m = new Maze("data1.dat");
-	System.out.println(m);
+	System.out.println("(" + m.startx + "," + m.starty + ")");
+	System.out.println("(" + m.targetX + "," + m.targetY + ")");
+	//	System.out.println(m);
+       	System.out.println(m.solve(false,0));
     }
 
 }
