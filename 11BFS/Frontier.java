@@ -34,6 +34,10 @@ public class Frontier{
 	return deq.getFirst();
     }
 
+    public boolean empty(){
+	return deq.empty();
+    }
+
     public String toString(){
 	return deq.toString();
     }

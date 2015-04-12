@@ -94,37 +94,39 @@ public class Maze{
     // Mode 0 = BFS  &  Mode 1 = DFS
     
     public boolean solve(boolean animate, int mode){
-	int x = startx;
-	int y = starty; 
 	Frontier f = new Frontier(mode);
-	Coordinate c = new Coordinate(x,y);
+	Coordinate start = new Coordinate(startx,starty);
 	f.add(c);
 
-	while( x != targetX || y != targetY){
+	while(!f.empty()){
         
+	    Coordinate c = f.remove();
+	    int x = c.getX();
+	    int y = c.getY();
+
 	    for(int i = f.getHead(); i < f.getTail(); i++){
 		
         	x = f.getFirst().getX();
 		y = f.getFirst().getY();
 
-		if(checkAround(x+1,y)){
+		if(checkSpot(x+1,y)){
 		    c = new Coordinate(x+1,y);
-		    //   maze[x+1][y] = '.';
+		    maze[x+1][y] = '.';
 		    f.add(c);
 		}
-		if (checkAround(x-1,y)){
+		if (checkSpot(x-1,y)){
 		    c = new Coordinate(x-1,y);
-		    //  maze[x-1][y] = '.';
+		    maze[x-1][y] = '.';
 		    f.add(c);
 		} 
-		if (checkAround(x,y+1)){
+		if (checkSpot(x,y+1)){
 		    c = new Coordinate(x,y+1);
-		    //   maze[x][y+1] = '.';
+		    maze[x][y+1] = '.';
 		    f.add(c);
 		}
-		if (checkAround(x,y-1)){
+		if (checkSpot(x,y-1)){
 		    c = new Coordinate(x,y-1);
-		    //   maze[x][y-1] = '.';
+		    maze[x][y-1] = '.';
 		    f.add(c);
 		}
 		
@@ -143,8 +145,8 @@ public class Maze{
 	return solve(animate,1);
     }
 
-    public boolean checkAround(int x, int y){
-	if(maze[x][y] != '.' && maze[x][y] != '#' && maze[x][y] == ' '){
+    public boolean checkSpot(int x, int y){
+	if(maze[x][y] != '#' && maze[x][y] != '.'){
 	    return true;
 	}else{
 	    return false;
