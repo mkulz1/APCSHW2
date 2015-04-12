@@ -96,6 +96,14 @@ public class MyDeque<T>{
 	    deq = thing;
 	}
     }
+    
+    public boolean empty(){
+    	if (size == 0){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
 
     public void shrink(){
 	Object[] ret = new Object[deq.length / 2];
