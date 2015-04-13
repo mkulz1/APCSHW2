@@ -4,6 +4,7 @@ public class Coordinate{
 
     private int x;
     private int y;
+    private Coordinate previous;
 
     public Coordinate(int x, int y){
 	this.x = x;
@@ -15,6 +16,12 @@ public class Coordinate{
     }
     public int getY(){
 	return this.y;
+    }
+    public Coordinate getPrevious(){
+	return this.previous;
+    }
+    public void setPrevious(Coordinate c){
+	previous = c;
     }
 
     public String toString(){

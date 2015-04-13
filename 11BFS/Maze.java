@@ -6,8 +6,10 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
-    private int targetX,targetY;
     private Frontier f;
+    private int[] solution;
+    private Coordinate t;
+    private int path;
 
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
@@ -66,10 +68,6 @@ public class Maze{
 		starty = i % maxx;
 		startx = i / maxx;
 	    }
-	    if(c == 'E'){
-		targetY = i % maxx;
-		targetX = i / maxx;
-	    }
 	}
     }
 
@@ -88,6 +86,13 @@ public class Maze{
 	}
 	return hide + go(0,0) + ans + "\n" + show + color(37,40);
     }
+    public String toString(boolean animate){
+	if (animate){
+	    return hide + clear + go(0,0) + toString() + show;
+	}else{
+	    return toString();
+	}
+    }
 
     // METHODS
 
@@ -96,46 +101,49 @@ public class Maze{
     public boolean solve(boolean animate, int mode){
 	Frontier f = new Frontier(mode);
 	Coordinate start = new Coordinate(startx,starty);
-	f.add(c);
-
+	f.add(start);
+	
 	while(!f.empty()){
-        
+	    
+	    if (animate){
+		wait(20);
+		System.out.println(toString(animate));
+	    }
+	    
 	    Coordinate c = f.remove();
 	    int x = c.getX();
 	    int y = c.getY();
-
-	    for(int i = f.getHead(); i < f.getTail(); i++){
-		
-        	x = f.getFirst().getX();
-		y = f.getFirst().getY();
-
-		if(checkSpot(x+1,y)){
-		    c = new Coordinate(x+1,y);
-		    maze[x+1][y] = '.';
-		    f.add(c);
-		}
-		if (checkSpot(x-1,y)){
-		    c = new Coordinate(x-1,y);
-		    maze[x-1][y] = '.';
-		    f.add(c);
-		} 
-		if (checkSpot(x,y+1)){
-		    c = new Coordinate(x,y+1);
-		    maze[x][y+1] = '.';
-		    f.add(c);
-		}
-		if (checkSpot(x,y-1)){
-		    c = new Coordinate(x,y-1);
-		    maze[x][y-1] = '.';
-		    f.add(c);
-		}
-		
-		f.remove();
- 	    }   
+	    
+	    if (checkSpot(x,y)){
+		if (maze[x][y] == 'E'){
+		    t = c;
+		    Coordinate hold = t;
+		    while ( hold != null){
+			path ++;
+			hold = hold.getPrevious();
+		    }	  
+		    return true;
+		} else {
+		    maze[x][y] = '.';
+		    // Possible spots
+		    Coordinate a = new Coordinate(x-1,y);
+		    a.setPrevious(c);
+		    Coordinate b = new Coordinate(x+1,y);
+		    b.setPrevious(c);
+		    Coordinate d = new Coordinate(x,y+1);
+		    d.setPrevious(d);
+		    Coordinate e = new Coordinate(x,y-1);
+		    e.setPrevious(e);
+		    f.add(a);
+		    f.add(b);
+		    f.add(d);
+		    f.add(e);
+		}   
+	    }
 	}
- 	return true;	
+	return false;
     }
-    
+
 
     public boolean solveBFS(boolean animate){
 	return solve(animate,0);
@@ -166,9 +174,8 @@ public class Maze{
     public static void main(String[]args){
 	Maze m = new Maze("data1.dat");
 	System.out.println("(" + m.startx + "," + m.starty + ")");
-	System.out.println("(" + m.targetX + "," + m.targetY + ")");
 	//	System.out.println(m);
-       	System.out.println(m.solve(false,0));
+       	System.out.println(m.solve(true,0));
     }
 
 }
