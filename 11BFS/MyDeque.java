@@ -3,6 +3,7 @@ import java.util.*;
 public class MyDeque<T>{
 
     private Object[] deq;
+    private int[] amazingness;
     private int head; 
     private int tail;
     private int size;
@@ -25,7 +26,7 @@ public class MyDeque<T>{
 	return head;
     }
 
-    public void addFirst(T value){
+    public void addFirst(T value, int a){
 	if (size == deq.length){
 	    resize();
 	}
