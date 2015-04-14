@@ -15,9 +15,13 @@ public class Frontier{
     }
     
     public void add(Coordinate c){
-	deq.addLast(c);
+	if(bfs){
+	    deq.addLast(c);
+	}else{
+	    deq.addFirst(c);
+	}
     }
-
+    
     public Coordinate remove(){
 	return deq.removeFirst();
     }
