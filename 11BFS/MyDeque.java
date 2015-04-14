@@ -96,29 +96,30 @@ public class MyDeque<T>{
 	if (head < tail){
 	    for (int i = head; i <= tail; i++){
 		thing[i] = deq[i];
-	    }else{
-		for( int i =head; i < deq.length; i++){
-		   thing[i] = deq[i];
-		}
-		for(int i = 0; i <= tail; i++){
-		    thing[i + deq.length] = deq[i];
-		}
-		tail += deq.length;
 	    }
-	    deq = thing;
+	}else{
+	    for( int i =head; i < deq.length; i++){
+		thing[i] = deq[i];
+	    }
+	    for(int i = 0; i <= tail; i++){
+		thing[i + deq.length] = deq[i];
+	    }
+	    tail += deq.length;
+	}
+	deq = thing;
     }
     
     public boolean empty(){
 	return  (size == 0);
     }
-
+    
     public void shrink(){
 	Object[] ret = new Object[deq.length / 2];
 	int c = 0;
 	if (head < tail){
 	    for (int i = head; i <= tail; i ++){
-		ret[c] = deq[i];
-		c ++;
+		    ret[c] = deq[i];
+		    c ++;
 	    }
 	}else{
 	    for (int i = head; i < deq.length; i ++){
@@ -127,12 +128,12 @@ public class MyDeque<T>{
 	    }
 	    for (int i = 0; i <= tail; i ++){
 		ret[c] = deq[i];
-		c ++;
+		    c ++;
 	    }
 	}
 	head = 0;
-	tail = c - 1;
-	deq = ret;
+	    tail = c - 1;
+	    deq = ret;
     }
     
     public String toString(){
@@ -145,9 +146,5 @@ public class MyDeque<T>{
 	}
 	str += "]";
 	return str;
-    }
-    
-    public static void main(String[]args){
-	
     }
 }

@@ -147,12 +147,12 @@ public class Maze{
 	}
 	return solved;
     }
-
-
+    
+    
     public boolean solveBFS(boolean animate){
 	return solve(animate,0);
     }
-
+    
     public boolean solveDFS(boolean animate){
 	return solve(animate,1);
     }
@@ -168,7 +168,7 @@ public class Maze{
      *Postcondition:  the correct solution is in the returned array
      */
     /*public int[] solutionCoordinates(){ 
-	
+      
       }*/
     
     public static void main(String[]args){
@@ -176,5 +176,5 @@ public class Maze{
 	System.out.println("(" + m.startx + "," + m.starty + ")");
        	System.out.println(m.solve(true,0));
     }
-
+    
 }
