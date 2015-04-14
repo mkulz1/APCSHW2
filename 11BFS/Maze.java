@@ -108,7 +108,7 @@ public class Maze{
 	while(!solved && !f.empty()){
 	    
 	    if (animate){
-		wait(100);
+		wait(5);
 		System.out.println(toString(animate));
 		System.out.println(f);
 	    }
@@ -174,7 +174,7 @@ public class Maze{
     public static void main(String[]args){
 	Maze m = new Maze("data3.dat");
 	System.out.println("(" + m.startx + "," + m.starty + ")");
-       	System.out.println(m.solve(true,0));
+       	System.out.println(m.solveDFS(true));
     }
     
 }
