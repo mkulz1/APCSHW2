@@ -35,10 +35,11 @@ public class MyDeque<T>{
 	    head = deq.length-1; // wraps around
 	}
 	deq[head] = value;
+	amazingness[head] = a;
 	size++;
     }
 
-    public void addLast(T value){
+    public void addLast(T value, int a){
 	if (size == deq.length){
 	    resize();
 	}
@@ -47,6 +48,7 @@ public class MyDeque<T>{
 	    tail = 0; // wraps around
 	}
 	deq[tail] = value;
+	amazingness[tail] = a;
 	size++;
     }
 
