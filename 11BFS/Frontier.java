@@ -22,18 +22,6 @@ public class Frontier{
 	return deq.removeFirst();
     }
 
-    // Returns the Index of Each
-    public int getHead(){
-	return deq.getHead();
-    }
-    public int getTail(){
-	return deq.getTail();
-    }
-    // Returns Head Coordinate
-    public Coordinate getFirst(){
-	return deq.getFirst();
-    }
-
     public boolean empty(){
 	return deq.empty();
     }

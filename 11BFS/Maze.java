@@ -10,6 +10,7 @@ public class Maze{
     private int[] solution;
     private Coordinate t;
     private int path;
+    private boolean solved;
 
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
@@ -65,12 +66,13 @@ public class Maze{
 	    char c = ans.charAt(i);
 	    maze[i % maxx][i / maxx] = c;
 	    if(c == 'S'){
-		starty = i % maxx;
-		startx = i / maxx;
+		startx = i % maxx;
+		starty = i / maxx;
 	    }
 	}
     }
 
+    // TO STRING METHODS
     public String toString(){
 	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
 	for(int i = 0; i < maxx * maxy; i++){
@@ -103,11 +105,12 @@ public class Maze{
 	Coordinate start = new Coordinate(startx,starty);
 	f.add(start);
 	
-	while(!f.empty()){
+	while(!solved && !f.empty()){
 	    
 	    if (animate){
-		wait(20);
+		wait(100);
 		System.out.println(toString(animate));
+		System.out.println(f);
 	    }
 	    
 	    Coordinate c = f.remove();
@@ -115,25 +118,25 @@ public class Maze{
 	    int y = c.getY();
 	    
 	    if (checkSpot(x,y)){
-		if (maze[x][y] == 'E'){
+		if (maze[y][x] == 'E'){
 		    t = c;
 		    Coordinate hold = t;
 		    while ( hold != null){
 			path ++;
 			hold = hold.getPrevious();
-		    }	  
-		    return true;
+		    }
+		    solved = true;	  
 		} else {
-		    maze[x][y] = '.';
+		    maze[y][x] = '.';
 		    // Possible spots
 		    Coordinate a = new Coordinate(x-1,y);
 		    a.setPrevious(c);
 		    Coordinate b = new Coordinate(x+1,y);
 		    b.setPrevious(c);
 		    Coordinate d = new Coordinate(x,y+1);
-		    d.setPrevious(d);
+		    d.setPrevious(c);
 		    Coordinate e = new Coordinate(x,y-1);
-		    e.setPrevious(e);
+		    e.setPrevious(c);
 		    f.add(a);
 		    f.add(b);
 		    f.add(d);
@@ -141,7 +144,7 @@ public class Maze{
 		}   
 	    }
 	}
-	return false;
+	return solved;
     }
 
 
@@ -154,11 +157,8 @@ public class Maze{
     }
 
     public boolean checkSpot(int x, int y){
-	if(maze[x][y] != '#' && maze[x][y] != '.'){
-	    return true;
-	}else{
-	    return false;
-	}
+	return (maze[y][x] != '#' && maze[y][x] != '.');
+
     }   
     
     /**return an array [x1,y1,x2,y2,x3,y3...]
