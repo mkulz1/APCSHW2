@@ -9,8 +9,8 @@ public class MyDeque<T>{
 
     public MyDeque(){
 	deq = new Object[10];
-	head = 0;
-	tail = 9;
+	head = 5;
+	tail = 4;
 	size = 0;
     }
 
@@ -26,6 +26,9 @@ public class MyDeque<T>{
     }
 
     public void addFirst(T value){
+	if (size == deq.length){
+	    resize();
+	}
 	head--;
 	if ( head < 0){
 	    head = deq.length-1; // wraps around
@@ -35,6 +38,9 @@ public class MyDeque<T>{
     }
 
     public void addLast(T value){
+	if (size == deq.length){
+	    resize();
+	}
 	tail++;
 	if (tail > deq.length - 1){
 	    tail = 0; // wraps around
@@ -65,7 +71,7 @@ public class MyDeque<T>{
 	T removed = (T)deq[tail];
 	tail--;
 
-	if (head < 0)
+	if (tail < 0)
 	    tail = deq.length - 1; // wraps around
 
 	return removed;
@@ -86,23 +92,24 @@ public class MyDeque<T>{
     }
 
     public void resize(){
-	if (size == deq.length){
-	    Object[] thing = new Object[size*2];
-	    for (int i = 0; i < size; i++){
-		thing[i] = deq[ (i + head) % (size)];
+	Object[] thing = new Object[deq.length*2];
+	if (head < tail){
+	    for (int i = head; i <= tail; i++){
+		thing[i] = deq[i];
+	    }else{
+		for( int i =head; i < deq.length; i++){
+		   thing[i] = deq[i];
+		}
+		for(int i = 0; i <= tail; i++){
+		    thing[i + deq.length] = deq[i];
+		}
+		tail += deq.length;
 	    }
-	    head = 0;
-	    tail = size - 1;
 	    deq = thing;
-	}
     }
     
     public boolean empty(){
-    	if (size == 0){
-    		return true;
-    	}else{
-    		return false;
-    	}
+	return  (size == 0);
     }
 
     public void shrink(){

@@ -62,19 +62,19 @@ public class Maze{
 
 	//copy from the single string to a 2D array
 	maze = new char[maxx][maxy];
-	for(int i = 0; i < ans.length(); i++){
+	for(int i=0;i<ans.length();i++){
 	    char c = ans.charAt(i);
-	    maze[i % maxx][i / maxx] = c;
-	    if(c == 'S'){
-		startx = i % maxx;
-		starty = i / maxx;
+	    maze[i%maxx][i/maxx]= c;
+	    if(c=='S'){
+		startx = i%maxx;
+		starty = i/maxx;
 	    }
 	}
     }
 
     // TO STRING METHODS
     public String toString(){
-	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
+	String ans = "Solving a maze that is " + maxy + " by " + maxx + "\n";
 	for(int i = 0; i < maxx * maxy; i++){
 	    if(i % maxx == 0 && i != 0){
 		ans += "\n";
@@ -118,7 +118,8 @@ public class Maze{
 	    int y = c.getY();
 	    
 	    if (checkSpot(x,y)){
-		if (maze[y][x] == 'E'){
+
+		if (maze[x][y] == 'E'){
 		    t = c;
 		    Coordinate hold = t;
 		    while ( hold != null){
@@ -127,15 +128,15 @@ public class Maze{
 		    }
 		    solved = true;	  
 		} else {
-		    maze[y][x] = '.';
+		    maze[x][y] = '.';
 		    // Possible spots
 		    Coordinate a = new Coordinate(x-1,y);
 		    a.setPrevious(c);
 		    Coordinate b = new Coordinate(x+1,y);
 		    b.setPrevious(c);
-		    Coordinate d = new Coordinate(x,y+1);
+		    Coordinate d = new Coordinate(x,y-1);
 		    d.setPrevious(c);
-		    Coordinate e = new Coordinate(x,y-1);
+		    Coordinate e = new Coordinate(x,y+1);
 		    e.setPrevious(c);
 		    f.add(a);
 		    f.add(b);
@@ -157,8 +158,7 @@ public class Maze{
     }
 
     public boolean checkSpot(int x, int y){
-	return (maze[y][x] != '#' && maze[y][x] != '.');
-
+	return !(maze[x][y] == '#' || maze[x][y] == '.' );
     }   
     
     /**return an array [x1,y1,x2,y2,x3,y3...]
@@ -172,9 +172,8 @@ public class Maze{
       }*/
     
     public static void main(String[]args){
-	Maze m = new Maze("data1.dat");
+	Maze m = new Maze("data3.dat");
 	System.out.println("(" + m.startx + "," + m.starty + ")");
-	//	System.out.println(m);
        	System.out.println(m.solve(true,0));
     }
 
