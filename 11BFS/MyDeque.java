@@ -25,7 +25,18 @@ public class MyDeque<T>{
     public int getHead(){
 	return head;
     }
-
+    
+    public void addFirst(T value){
+	if (size == deq.length){
+	    resize();
+	}
+	head--;
+	if ( head < 0){
+	    head = deq.length-1; // wraps around
+	}
+	deq[head] = value;
+	size++;
+    }
     public void addFirst(T value, int a){
 	if (size == deq.length){
 	    resize();
@@ -38,7 +49,7 @@ public class MyDeque<T>{
 	amazingness[head] = a;
 	size++;
     }
-
+    
     public void addLast(T value, int a){
 	if (size == deq.length){
 	    resize();
@@ -51,15 +62,26 @@ public class MyDeque<T>{
 	amazingness[tail] = a;
 	size++;
     }
-
+    public void addLast(T value){
+	if (size == deq.length){
+	    resize();
+	}
+	tail++;
+	if (tail > deq.length - 1){
+	    tail = 0; // wraps around
+	}
+	deq[tail] = value;
+	size++;
+    }
+    
     public T removeFirst(){
 	if (size == 0)
 	    throw new NoSuchElementException();
-
+	
 	size--;
 	T removed = (T)deq[head];
 	head++;
-
+	
 	if (head > deq.length - 1)
 	    head = 0; // wraps around
 

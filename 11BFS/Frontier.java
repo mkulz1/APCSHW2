@@ -21,7 +21,14 @@ public class Frontier{
 	    deq.addFirst(c);
 	}
     }
-    
+    public void add(Coordinate c){
+	deq.add(c,amaze(c));
+    }
+
+    public void amaze(Coordinate now, Coordinate goal){
+	return ( Math.abs(now.getX() - goal.getX())) + 
+    }
+	
     public Coordinate remove(){
 	return deq.removeFirst();
     }

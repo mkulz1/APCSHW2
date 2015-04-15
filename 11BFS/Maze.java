@@ -159,7 +159,14 @@ public class Maze{
 
     public boolean checkSpot(int x, int y){
 	return !(maze[x][y] == '#' || maze[x][y] == '.' );
-    }   
+    }  
+
+    public Coordinate findE(){
+	for(int x = 0; x < maze.length; x++){
+	    for(int y = 0; y <maze[i].length; y++){
+
+	    }
+    } 
     
     /**return an array [x1,y1,x2,y2,x3,y3...]
      *that contains the coordinates of the solution from start to end.
@@ -167,14 +174,24 @@ public class Maze{
      (otherwise an empty array is returned)
      *Postcondition:  the correct solution is in the returned array
      */
-    /*public int[] solutionCoordinates(){ 
-      
-      }*/
+    /*  public int[] solutionCoordinates(){ 
+	int[] solution = new int[path * 2];
+	Coordinate r = t;
+	int i = 0;
+	while (r != null){
+	    solution[path-i] = r.getX();
+	    solution[path - 1 - i] = r.getY();
+	    i += 2;
+	    r = r.getPrevious();
+	}
+	return solution;
+	}*/
     
     public static void main(String[]args){
-	Maze m = new Maze("data3.dat");
+	Maze m = new Maze("data4.dat");
 	System.out.println("(" + m.startx + "," + m.starty + ")");
        	System.out.println(m.solveDFS(true));
+	//	System.out.println(m.solutionCoordinates());
     }
     
 }
