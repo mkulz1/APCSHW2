@@ -11,6 +11,7 @@ public class Maze{
     private Coordinate t;
     private int path;
     private boolean solved;
+    private Coordinate target;
 
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
@@ -70,6 +71,7 @@ public class Maze{
 		starty = i/maxx;
 	    }
 	}
+	findE();
     }
 
     // TO STRING METHODS
@@ -108,7 +110,7 @@ public class Maze{
 	while(!solved && !f.empty()){
 	    
 	    if (animate){
-		wait(5);
+		wait(2);
 		System.out.println(toString(animate));
 		System.out.println(f);
 	    }
@@ -161,13 +163,15 @@ public class Maze{
 	return !(maze[x][y] == '#' || maze[x][y] == '.' );
     }  
 
-    public Coordinate findE(){
+    public void findE(){
 	for(int x = 0; x < maze.length; x++){
-	    for(int y = 0; y <maze[i].length; y++){
-
+	    for(int y = 0; y <maze[x].length; y++){
+		if (maze[x][y] == 'E'){
+		    target = new Coordinate(x,y);
+		}
 	    }
-    } 
-    
+	} 
+    }
     /**return an array [x1,y1,x2,y2,x3,y3...]
      *that contains the coordinates of the solution from start to end.
      *Precondition :  solveBFS() OR solveDFS() has already been called
