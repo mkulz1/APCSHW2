@@ -100,7 +100,7 @@ public class Maze{
 
     // METHODS
 
-    // Mode 0 = BFS  &  Mode 1 = DFS
+    // Mode 0 = BFS  &  Mode 1 = DFS & Mode 2 = Best
     
     public boolean solve(boolean animate, int mode){
 	Frontier f = new Frontier(mode);
@@ -112,7 +112,7 @@ public class Maze{
 	    if (animate){
 		wait(2);
 		System.out.println(toString(animate));
-		System.out.println(f);
+		System.out.println(f.getAmazing());
 	    }
 	    
 	    Coordinate c = f.remove();
@@ -158,6 +158,9 @@ public class Maze{
     public boolean solveDFS(boolean animate){
 	return solve(animate,1);
     }
+    public boolean solveBest(boolean animate){
+	return solve(animate,2);
+    }
 
     public boolean checkSpot(int x, int y){
 	return !(maze[x][y] == '#' || maze[x][y] == '.' );
@@ -194,7 +197,7 @@ public class Maze{
     public static void main(String[]args){
 	Maze m = new Maze("data4.dat");
 	System.out.println("(" + m.startx + "," + m.starty + ")");
-       	System.out.println(m.solveDFS(true));
+       	System.out.println(m.solveBest(true));
 	//	System.out.println(m.solutionCoordinates());
     }
     

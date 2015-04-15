@@ -25,6 +25,9 @@ public class MyDeque<T>{
     public int getHead(){
 	return head;
     }
+    public int[] getAmazing(){
+	return amazingness;
+    }
     
     public void addFirst(T value){
 	if (size == deq.length){
