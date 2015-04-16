@@ -105,6 +105,7 @@ public class Maze{
     public boolean solve(boolean animate, int mode){
 	Frontier f = new Frontier(mode);
 	Coordinate start = new Coordinate(startx,starty);
+	path = 0;
 	f.add(start);
 	
 	while(!solved && !f.empty()){
@@ -112,7 +113,7 @@ public class Maze{
 	    if (animate){
 		wait(2);
 		System.out.println(toString(animate));
-		System.out.println(f.getAmazing());
+		System.out.println(f);
 	    }
 	    
 	    Coordinate c = f.remove();
@@ -161,11 +162,11 @@ public class Maze{
     public boolean solveBest(boolean animate){
 	return solve(animate,2);
     }
-
+    
     public boolean checkSpot(int x, int y){
 	return !(maze[x][y] == '#' || maze[x][y] == '.' );
     }  
-
+    
     public void findE(){
 	for(int x = 0; x < maze.length; x++){
 	    for(int y = 0; y <maze[x].length; y++){
@@ -181,24 +182,39 @@ public class Maze{
      (otherwise an empty array is returned)
      *Postcondition:  the correct solution is in the returned array
      */
-    /*  public int[] solutionCoordinates(){ 
-	int[] solution = new int[path * 2];
-	Coordinate r = t;
+    public int[] solutionCoordinates(){ 
+	solution = new int[path * 2];
+	Coordinate ya = t;
 	int i = 0;
-	while (r != null){
-	    solution[path-i] = r.getX();
-	    solution[path - 1 - i] = r.getY();
+	while (ya != null){
+	    solution[i] = ya.getX();
+	    solution[i+1] = ya.getY();
 	    i += 2;
-	    r = r.getPrevious();
+	    ya = ya.getPrevious();
+	}
+	// Have to put them in opposite order
+	for(int x = 0; x < solution.length / 2; x++){
+	    int temp = solution[x];
+	    solution[x] = solution[solution.length - x - 1];
+	    solution[solution.length - x - 1] = temp;
 	}
 	return solution;
-	}*/
+    }
+    public String solution(){
+	String str = "[ ";
+	for(int i = 3; i < solution.length; i++){
+	    str += solution[i] + ",";
+	}
+	str += "]";
+	return str;
+    }
     
     public static void main(String[]args){
-	Maze m = new Maze("data4.dat");
+	Maze m = new Maze("data1.dat");
 	System.out.println("(" + m.startx + "," + m.starty + ")");
-       	System.out.println(m.solveBest(true));
-	//	System.out.println(m.solutionCoordinates());
+       	System.out.println(m.solveBFS(true));
+	m.solutionCoordinates();
+	System.out.println(m.solution());
     }
     
 }
