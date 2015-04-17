@@ -3,7 +3,7 @@ import java.util.*;
 public class MyDeque<T>{
 
     private Object[] deq;
-    private int[] amazingness;
+    private int[] priority;
     private int head; 
     private int tail;
     private int size;
@@ -25,8 +25,8 @@ public class MyDeque<T>{
     public int getHead(){
 	return head;
     }
-    public int[] getAmazing(){
-	return amazingness;
+    public int[] getPriority(){
+	return priority;
     }
     
     public void addFirst(T value){
@@ -40,31 +40,20 @@ public class MyDeque<T>{
 	deq[head] = value;
 	size++;
     }
-    public void addFirst(T value, int a){
-	if (size == deq.length){
-	    resize();
-	}
-	head--;
-	if ( head < 0){
-	    head = deq.length-1; // wraps around
-	}
-	deq[head] = value;
-	amazingness[head] = a;
-	size++;
-    }
-    
+    ///////////  ADDS PRIORITY TOO  //////////////
     public void addLast(T value, int a){
 	if (size == deq.length){
 	    resize();
 	}
 	tail++;
-	if (tail > deq.length - 1){
+	if ( tail > deq.length - 1){
 	    tail = 0; // wraps around
 	}
 	deq[tail] = value;
-	amazingness[tail] = a;
+        priority[tail] = a;
 	size++;
     }
+    /////////////////////////////////////////////////
     public void addLast(T value){
 	if (size == deq.length){
 	    resize();
@@ -112,6 +101,8 @@ public class MyDeque<T>{
 	return (T)deq[head];
     }
 
+
+
     public T getLast(){
 	if (size == 0)
 	    throw new NoSuchElementException();
@@ -121,20 +112,25 @@ public class MyDeque<T>{
 
     public void resize(){
 	Object[] thing = new Object[deq.length*2];
+	int[] newPriority = new int[priority.length*2];
 	if (head < tail){
 	    for (int i = head; i <= tail; i++){
 		thing[i] = deq[i];
+		newPriority[i] = priority[i];
 	    }
 	}else{
-	    for( int i =head; i < deq.length; i++){
+	    for( int i = head; i < deq.length; i++){
 		thing[i] = deq[i];
+		newPriority[i] = priority[i];
 	    }
 	    for(int i = 0; i <= tail; i++){
 		thing[i + deq.length] = deq[i];
+		newPriority[i + priority.length] = priority[i];
 	    }
 	    tail += deq.length;
 	}
 	deq = thing;
+	priority = newPriority;
     }
     
     public boolean empty(){

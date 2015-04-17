@@ -16,17 +16,17 @@ public class Frontier{
 	    deq.addLast(c);
 	}else if (mode == 1){
 	    deq.addFirst(c);
-	}else{
-	    deq.addLast(c,amaze(c,end));
+	}else if (mode == 2){
+	    deq.addLast(c,distance(c));
 	}
     }
     
-    public int amaze(Coordinate now, Coordinate goal){
-	return (Math.abs(now.getX() - goal.getX())) + (Math.abs(now.getY() - goal.getY()));
+    public int distance(Coordinate now){
+        return (Math.abs(now.getX() - end.getX())) + (Math.abs(now.getY() - end.getY()));
     }
 
-    public int[] getAmazing(){
-	return deq.getAmazing();
+    public int[] getPriority(){
+	return deq.getPriority();
     }
     public Coordinate remove(){
 	return deq.removeFirst();

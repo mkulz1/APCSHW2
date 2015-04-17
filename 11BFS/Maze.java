@@ -11,7 +11,8 @@ public class Maze{
     private Coordinate t;
     private int path;
     private boolean solved;
-    private Coordinate target;
+    private static Coordinate target;
+    private Frontier sol;
 
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
@@ -113,7 +114,7 @@ public class Maze{
 	    if (animate){
 		wait(2);
 		System.out.println(toString(animate));
-		System.out.println(f);
+		//	System.out.println(f); //for testing 
 	    }
 	    
 	    Coordinate c = f.remove();
@@ -182,11 +183,13 @@ public class Maze{
      (otherwise an empty array is returned)
      *Postcondition:  the correct solution is in the returned array
      */
-    public int[] solutionCoordinates(){ 
+    public int[] solutionCoordinates(){
+	sol = new Frontier(1); // for printing the solution as a set of coordinates
 	solution = new int[path * 2];
 	Coordinate ya = t;
 	int i = 0;
 	while (ya != null){
+	    sol.add(ya);
 	    solution[i] = ya.getX();
 	    solution[i+1] = ya.getY();
 	    i += 2;
@@ -202,7 +205,7 @@ public class Maze{
     }
     public String solution(){
 	String str = "[ ";
-	for(int i = 3; i < solution.length; i++){
+	for(int i = 0; i < solution.length; i++){
 	    str += solution[i] + ",";
 	}
 	str += "]";
@@ -214,7 +217,8 @@ public class Maze{
 	System.out.println("(" + m.startx + "," + m.starty + ")");
        	System.out.println(m.solveBFS(true));
 	m.solutionCoordinates();
-	System.out.println(m.solution());
+	System.out.println("Location of E: " + target);
+	System.out.println("Solution: \n" + m.sol);
     }
     
 }
