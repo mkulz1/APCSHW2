@@ -19,7 +19,8 @@ public class Frontier{
 	    deq.addFirst(c);
 	}else if (mode == 2){
 	    deq.addLast(c,distance(c));
-	}
+	}else if (mode == 3){
+	    deq.addLast(c,distance(c) + deq.path);
     }
     
     public int distance(Coordinate now){

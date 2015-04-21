@@ -5,10 +5,12 @@ public class Coordinate{
     private int x;
     private int y;
     private Coordinate previous;
+    private int steps;
 
-    public Coordinate(int x, int y){
+    public Coordinate(int x, int y, 0){
 	this.x = x;
 	this.y = y;
+	this.steps = steps;
     }
 
     public int getX(){
@@ -16,6 +18,9 @@ public class Coordinate{
     }
     public int getY(){
 	return this.y;
+    }
+    public int getSteps(){
+	return this.steps;
     }
     public Coordinate getPrevious(){
 	return this.previous;
