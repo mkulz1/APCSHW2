@@ -213,6 +213,7 @@ public class Maze{
 	    sol.add(ya);
 	    solution[i] = ya.getX();
 	    solution[i+1] = ya.getY();
+	    maze[ya.getX()][ya.getY()] = 'O';
 	    i += 2;
 	    ya = ya.getPrevious();
 	}
@@ -236,9 +237,9 @@ public class Maze{
     public static void main(String[]args){
 	Maze m = new Maze("data1.dat");
        	System.out.println(m.solveBest(true));
-	//	m.solutionCoordinates();
+       	m.solutionCoordinates();
 	System.out.println("Location of E: " + target);
-	//	System.out.println("Solution: \n" + m.sol);
+       	System.out.println("Solution: \n" + m.sol);
     }
     
 }
