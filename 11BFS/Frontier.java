@@ -18,14 +18,14 @@ public class Frontier{
 	}else if (mode == 1){
 	    deq.addFirst(c);
 	}else if (mode == 2){
-	    deq.addLast(c,distance(c));
+	    deq.add(c,distance(c));
 	}else if (mode == 3){
-	    deq.addLast(c,distance(c) + c.getSteps());
+	    deq.add(c,distance(c) + c.getSteps());
 	}
     }
     
     public int distance(Coordinate now){
-        return (Math.abs(now.getX() - end.getX())) + (Math.abs(now.getY() - end.getY()));
+        return Math.abs(now.getX() - end.getX()) + Math.abs(now.getY() - end.getY());
     }
 
     public Coordinate remove(){

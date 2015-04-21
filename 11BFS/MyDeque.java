@@ -42,18 +42,13 @@ public class MyDeque<T>{
 	size++;
     }
     ///////////  ADDS PRIORITY TOO  //////////////
-    public void addLast(T value, int a){
+    public void add(T value, int a){
 	if (size == deq.length){
 	    resize();
 	    resizeP();
 	}
-	tail++;
-	if ( tail > deq.length - 1){
-	    tail = 0; // wraps around
-	}
-	deq[tail] = value;
-        priority[tail] = a;
-	size++;
+	addFirst(value);
+	priority[head] = a;
     }
     /////////////////////////////////////////////////
     public void addLast(T value){
@@ -110,7 +105,7 @@ public class MyDeque<T>{
 	if (head <= tail){
 	    for(int i = head+1; i <= tail; i++){
 		if(priority[i] < priority[location]){
-		    locaiton  = i;
+		    location  = i;
 		}
 	    }
 	}else{
@@ -124,7 +119,7 @@ public class MyDeque<T>{
 	priority[location] = priority[head];
 	priority[head] = 0;
 	deq[location] = removeFirst();
-	return smallest;
+	return (T)smallest;
     }
     ////////////////////////////////
     public T getFirst(){

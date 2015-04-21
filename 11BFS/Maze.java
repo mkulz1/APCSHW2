@@ -231,7 +231,7 @@ public class Maze{
     
     public static void main(String[]args){
 	Maze m = new Maze("data1.dat");
-	System.out.println("(" + m.startx + "," + m.starty + ")");
+	System.out.println("Start: (" + m.startx + "," + m.starty + ")");
        	System.out.println(m.solveBFS(true));
 	//	m.solutionCoordinates();
 	System.out.println("Location of E: " + target);
