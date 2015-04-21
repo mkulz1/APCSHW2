@@ -105,7 +105,7 @@ public class Maze{
     
     public boolean solve(boolean animate, int mode){
 	Frontier f = new Frontier(mode,target);
-	Coordinate start = new Coordinate(startx,starty);
+	Coordinate start = new Coordinate(startx,starty,0);
 	path = 0;
 	f.add(start);
 	
@@ -134,17 +134,17 @@ public class Maze{
 		} else {
 		    maze[x][y] = '.';
 		    // Possible spots
-		     Coordinate[] coord = new Coordinate[]{
-			new Coordinate(x-1,y),
-			new Coordinate(x+1,y),
-			new Coordinate(x,y-1),
-			new Coordinate(x,y+1),
+		    Coordinate[] coord = new Coordinate[]{
+			new Coordinate(x-1,y,c.getSteps()+1),
+			new Coordinate(x+1,y,c.getSteps()+1),
+			new Coordinate(x,y-1,c.getSteps()+1),
+			new Coordinate(x,y+1,c.getSteps()+1),
 		    };
 		    for(Coordinate hey : coord){
 			hey.setPrevious(c);
 			int xx = hey.getX();
 			int yy = hey.getY();
-			if(maze[xx][yy] != '#' && maze[xx][yy] != '.')
+			if(checkSpot(xx,yy))
 			    f.add(hey);
 		    }
 		}   
@@ -153,16 +153,32 @@ public class Maze{
 	return solved;
     }
     
+
+    /// SOLVE METHODS
+    public boolean solveBFS(){
+	return solve(false,0);
+    }
+    public boolean solveDFS(){
+	return solve(false,1);
+    }
+    public boolean solveBest(){
+	return solve(false,2);
+    }
+    public boolean solveAStar(){
+	return solve(false,3);
+    }
     
     public boolean solveBFS(boolean animate){
 	return solve(animate,0);
     }
-    
     public boolean solveDFS(boolean animate){
 	return solve(animate,1);
     }
     public boolean solveBest(boolean animate){
 	return solve(animate,2);
+    }
+    public boolean solveAStar(boolean animate){
+	return solve(animate,3);
     }
     
     public boolean checkSpot(int x, int y){
@@ -173,7 +189,7 @@ public class Maze{
 	for(int x = 0; x < maze.length; x++){
 	    for(int y = 0; y <maze[x].length; y++){
 		if (maze[x][y] == 'E'){
-		    target = new Coordinate(x,y);
+		    target = new Coordinate(x,y,0);
 		}
 	    }
 	} 

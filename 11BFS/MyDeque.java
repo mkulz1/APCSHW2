@@ -120,7 +120,7 @@ public class MyDeque<T>{
 		}
 	    }
 	}
-	Object smallest = deq[index];
+	Object smallest = deq[location];
 	priority[location] = priority[head];
 	priority[head] = 0;
 	deq[location] = removeFirst();

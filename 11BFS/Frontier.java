@@ -20,7 +20,8 @@ public class Frontier{
 	}else if (mode == 2){
 	    deq.addLast(c,distance(c));
 	}else if (mode == 3){
-	    deq.addLast(c,distance(c) + deq.path);
+	    deq.addLast(c,distance(c) + c.getSteps());
+	}
     }
     
     public int distance(Coordinate now){

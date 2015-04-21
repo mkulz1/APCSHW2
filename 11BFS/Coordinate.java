@@ -7,7 +7,7 @@ public class Coordinate{
     private Coordinate previous;
     private int steps;
 
-    public Coordinate(int x, int y, 0){
+    public Coordinate(int x, int y, int steps){
 	this.x = x;
 	this.y = y;
 	this.steps = steps;
