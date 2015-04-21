@@ -232,7 +232,7 @@ public class Maze{
     public static void main(String[]args){
 	Maze m = new Maze("data1.dat");
 	System.out.println("Start: (" + m.startx + "," + m.starty + ")");
-       	System.out.println(m.solveBFS(true));
+       	System.out.println(m.solveBest(true));
 	//	m.solutionCoordinates();
 	System.out.println("Location of E: " + target);
 	//	System.out.println("Solution: \n" + m.sol);
