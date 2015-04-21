@@ -104,8 +104,12 @@ public class Maze{
     // Mode 0 = BFS  &  Mode 1 = DFS & Mode 2 = Best
     
     public boolean solve(boolean animate, int mode){
-	Frontier f = new Frontier(mode,target);
+	Frontier f = new Frontier(mode);
 	Coordinate start = new Coordinate(startx,starty,0);
+	System.out.println("Start: " + start);
+	System.out.println("Real Target: " + target);
+	f.setEnd(target);
+	System.out.println("Target: " + f.getEnd());
 	path = 0;
 	f.add(start);
 	
@@ -201,7 +205,7 @@ public class Maze{
      *Postcondition:  the correct solution is in the returned array
      */
     public int[] solutionCoordinates(){
-	sol = new Frontier(1,target); // for printing the solution as a set of coordinates
+	sol = new Frontier(1); // for printing the solution as a set of coordinates
 	solution = new int[path * 2];
 	Coordinate ya = t;
 	int i = 0;
@@ -231,7 +235,6 @@ public class Maze{
     
     public static void main(String[]args){
 	Maze m = new Maze("data1.dat");
-	System.out.println("Start: (" + m.startx + "," + m.starty + ")");
        	System.out.println(m.solveBest(true));
 	//	m.solutionCoordinates();
 	System.out.println("Location of E: " + target);

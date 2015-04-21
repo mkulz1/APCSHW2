@@ -5,23 +5,30 @@ public class Frontier{
   
     private MyDeque<Coordinate> deq;
     private int mode;
-    private static Coordinate end;
+    private Coordinate end;
 
-    public Frontier(int m, Coordinate e){
+    public Frontier(int m){
 	mode = m;
 	deq = new MyDeque<Coordinate>();
-	Coordinate end = e;
     }
     
+    public void setEnd(Coordinate e){
+	end = e;
+    }
+
     public void add(Coordinate c){
 	if(mode == 0){
 	    deq.addLast(c);
 	}else if (mode == 1){
 	    deq.addFirst(c);
 	}else if (mode == 2){
-	    deq.add(c,distance(c));
+	    try{
+		deq.add(c,distance(c));
+	    }catch(NullPointerException e){
+		System.out.println("Something wrong in add!");
+	    }
 	}else if (mode == 3){
-	    deq.add(c,distance(c) + c.getSteps());
+	    deq.add(c,(distance(c) + c.getSteps()));
 	}
     }
     
@@ -36,7 +43,11 @@ public class Frontier{
 	    return deq.removeFirst();
 	}
     }
-    
+
+    public Coordinate getEnd(){
+	return this.end;
+    }    
+
     public boolean empty(){
 	return deq.empty();
     }
