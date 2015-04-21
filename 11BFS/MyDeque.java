@@ -10,6 +10,7 @@ public class MyDeque<T>{
 
     public MyDeque(){
 	deq = new Object[10];
+	priority = new int[10];
 	head = 5;
 	tail = 4;
 	size = 0;
@@ -44,6 +45,7 @@ public class MyDeque<T>{
     public void addLast(T value, int a){
 	if (size == deq.length){
 	    resize();
+	    resizeP();
 	}
 	tail++;
 	if ( tail > deq.length - 1){
@@ -94,15 +96,44 @@ public class MyDeque<T>{
 	return removed;
     }
 
+    //////////// REMOVE SMALLEST ////////////////
+    public T removeSmallest(){
+	if (size == 1){
+	    size --;
+	    return (T)deq[head];
+	}
+	if (size == 0){
+	    throw new NoSuchElementException();
+	} 
+	
+	int location = head;
+	if (head <= tail){
+	    for(int i = head+1; i <= tail; i++){
+		if(priority[i] < priority[location]){
+		    locaiton  = i;
+		}
+	    }
+	}else{
+	    for(int i = head+1; i < priority.length; i++){
+		if(priority[i] < priority[location]){
+		    location = i;
+		}
+	    }
+	}
+	Object smallest = deq[index];
+	priority[location] = priority[head];
+	priority[head] = 0;
+	deq[location] = removeFirst();
+	return smallest;
+    }
+    ////////////////////////////////
     public T getFirst(){
 	if (size == 0)
 	    throw new NoSuchElementException();
-     
+	
 	return (T)deq[head];
     }
-
-
-
+	
     public T getLast(){
 	if (size == 0)
 	    throw new NoSuchElementException();
@@ -110,27 +141,39 @@ public class MyDeque<T>{
 	return (T)deq[tail];
     }
 
-    public void resize(){
-	Object[] thing = new Object[deq.length*2];
+    public void resizeP(){
 	int[] newPriority = new int[priority.length*2];
-	if (head < tail){
-	    for (int i = head; i <= tail; i++){
-		thing[i] = deq[i];
+	if(head < tail){
+	    for(int i = head; i <= tail; i ++){
 		newPriority[i] = priority[i];
 	    }
 	}else{
-	    for( int i = head; i < deq.length; i++){
-		thing[i] = deq[i];
+	    for(int i = head; i < priority.length; i++){
 		newPriority[i] = priority[i];
 	    }
 	    for(int i = 0; i <= tail; i++){
+		newPriority[i+priority.length] = priority[i];
+	    }
+	}
+	priority = newPriority;
+    }
+    
+    public void resize(){
+	Object[] thing = new Object[deq.length*2];	
+	if (head < tail){
+	    for (int i = head; i <= tail; i++){
+		thing[i] = deq[i];	
+	    }
+	}else{
+	    for( int i = head; i < deq.length; i++){
+		thing[i] = deq[i];	
+	    }
+	    for(int i = 0; i <= tail; i++){
 		thing[i + deq.length] = deq[i];
-		newPriority[i + priority.length] = priority[i];
 	    }
 	    tail += deq.length;
 	}
 	deq = thing;
-	priority = newPriority;
     }
     
     public boolean empty(){
@@ -142,8 +185,8 @@ public class MyDeque<T>{
 	int c = 0;
 	if (head < tail){
 	    for (int i = head; i <= tail; i ++){
-		    ret[c] = deq[i];
-		    c ++;
+		ret[c] = deq[i];
+		c ++;
 	    }
 	}else{
 	    for (int i = head; i < deq.length; i ++){
@@ -152,12 +195,12 @@ public class MyDeque<T>{
 	    }
 	    for (int i = 0; i <= tail; i ++){
 		ret[c] = deq[i];
-		    c ++;
+		c ++;
 	    }
 	}
 	head = 0;
-	    tail = c - 1;
-	    deq = ret;
+	tail = c - 1;
+	deq = ret;
     }
     
     public String toString(){

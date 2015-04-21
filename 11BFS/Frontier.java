@@ -4,11 +4,12 @@ public class Frontier{
   
     private MyDeque<Coordinate> deq;
     private int mode;
-    private Coordinate end;
+    private static Coordinate end;
 
-    public Frontier(int m){
+    public Frontier(int m, Coordinate e){
 	mode = m;
 	deq = new MyDeque<Coordinate>();
+	Coordinate end = e;
     }
     
     public void add(Coordinate c){
@@ -25,11 +26,12 @@ public class Frontier{
         return (Math.abs(now.getX() - end.getX())) + (Math.abs(now.getY() - end.getY()));
     }
 
-    public int[] getPriority(){
-	return deq.getPriority();
-    }
     public Coordinate remove(){
-	return deq.removeFirst();
+	if(mode == 2 || mode == 3){
+	    return deq.removeSmallest();
+	}else{
+	    return deq.removeFirst();
+	}
     }
     
     public boolean empty(){

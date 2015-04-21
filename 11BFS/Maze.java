@@ -104,7 +104,7 @@ public class Maze{
     // Mode 0 = BFS  &  Mode 1 = DFS & Mode 2 = Best
     
     public boolean solve(boolean animate, int mode){
-	Frontier f = new Frontier(mode);
+	Frontier f = new Frontier(mode,target);
 	Coordinate start = new Coordinate(startx,starty);
 	path = 0;
 	f.add(start);
@@ -134,18 +134,19 @@ public class Maze{
 		} else {
 		    maze[x][y] = '.';
 		    // Possible spots
-		    Coordinate a = new Coordinate(x-1,y);
-		    a.setPrevious(c);
-		    Coordinate b = new Coordinate(x+1,y);
-		    b.setPrevious(c);
-		    Coordinate d = new Coordinate(x,y-1);
-		    d.setPrevious(c);
-		    Coordinate e = new Coordinate(x,y+1);
-		    e.setPrevious(c);
-		    f.add(a);
-		    f.add(b);
-		    f.add(d);
-		    f.add(e);
+		     Coordinate[] coord = new Coordinate[]{
+			new Coordinate(x-1,y),
+			new Coordinate(x+1,y),
+			new Coordinate(x,y-1),
+			new Coordinate(x,y+1),
+		    };
+		    for(Coordinate hey : coord){
+			hey.setPrevious(c);
+			int xx = hey.getX();
+			int yy = hey.getY();
+			if(maze[xx][yy] != '#' && maze[xx][yy] != '.')
+			    f.add(hey);
+		    }
 		}   
 	    }
 	}
@@ -184,7 +185,7 @@ public class Maze{
      *Postcondition:  the correct solution is in the returned array
      */
     public int[] solutionCoordinates(){
-	sol = new Frontier(1); // for printing the solution as a set of coordinates
+	sol = new Frontier(1,target); // for printing the solution as a set of coordinates
 	solution = new int[path * 2];
 	Coordinate ya = t;
 	int i = 0;
@@ -216,9 +217,9 @@ public class Maze{
 	Maze m = new Maze("data1.dat");
 	System.out.println("(" + m.startx + "," + m.starty + ")");
        	System.out.println(m.solveBFS(true));
-	m.solutionCoordinates();
+	//	m.solutionCoordinates();
 	System.out.println("Location of E: " + target);
-	System.out.println("Solution: \n" + m.sol);
+	//	System.out.println("Solution: \n" + m.sol);
     }
     
 }
