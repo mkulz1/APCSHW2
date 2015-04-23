@@ -53,6 +53,9 @@ public class BTree<E>{
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
+	System.out.println(curr);
+	preOrder(curr.getLeft());
+	preOrder(curr.getRight());
     }
 
 
@@ -64,6 +67,9 @@ public class BTree<E>{
       in-order Traversal
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
+	inOrder(curr.getLeft());
+	System.out.println(curr);
+	inOrder(
     }
 
     /*======== public void postOrder() ==========
