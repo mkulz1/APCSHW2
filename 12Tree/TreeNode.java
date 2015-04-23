@@ -25,14 +25,15 @@ public class TreeNode<E>{
     }
 
     public String toString(){
-	return "(" + (String)data + ")";
+	return "(" + data + ")";
     }
 
     public static void main(String[]args){
-	/*	TreeNode<String> hi = new TreeNode<String>("hello");
+	/* 	TreeNode<Integer> hi = new TreeNode<Integer>(666);
 		System.out.println(hi);
-		TreeNode<String> yo = new TreeNode<String>("sup");
+		TreeNode<Integer> yo = new TreeNode<Integer>(999);
 		hi.setLeft(yo);
-		System.out.println(hi.getLeft());*/
+		System.out.println(hi.getLeft());
+	*/
     }
 }
