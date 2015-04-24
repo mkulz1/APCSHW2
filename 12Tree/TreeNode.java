@@ -17,6 +17,13 @@ public class TreeNode<E>{
 	return right;
     }
 
+    public void setData(E value){
+	data = value;
+    }
+    public E getData(){
+	return data;
+    }
+
     public void setLeft(TreeNode<E> node){
 	left = node;
     }
