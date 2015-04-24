@@ -44,13 +44,14 @@ public class BTree<E>{
 	    curr.setLeft(bn);
 	} else if (curr.getRight() == null){
 	    curr.setRight(bn);
-	}
-	int r = rand.nextInt(2);
-	if (r == 0){
-	    add(curr.getLeft(),bn);
-	}
-	if (r == 1){
-	    add(curr.getRight(),bn);
+	} else {
+	    int r = rand.nextInt(2);
+	    if (r == 0){
+		add(curr.getLeft(),bn);
+	    }
+	    if (r == 1){
+		add(curr.getRight(),bn);
+	    }
 	}
     }
     
@@ -116,7 +117,7 @@ public class BTree<E>{
       Wrapper for the recursive getHeight method
       ====================*/
     public int getHeight() {
-	return getHeight( root );
+	return getHeight(root);
     }
     /*======== public int getHeight() ==========
       Inputs:   TreeNode<E> curr  
@@ -124,6 +125,11 @@ public class BTree<E>{
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
+	TreeNode<E> temp = root;
+	int height = 0;
+	while (temp != curr){
+
+	}
 	return -1;
     }
 
@@ -166,8 +172,8 @@ public class BTree<E>{
 
 	BTree<Integer> t = new BTree<Integer>();
 
-	for ( int i=0; i < 8; i++ ) 
-	    t.add( i );
+	for ( int i = 0; i < 8; i++ ) 
+	    t.add(i );
 	System.out.println( "Pre-order: ");
 	t.traverse( PRE_ORDER );
 	System.out.println( "In-order: ");
@@ -176,6 +182,6 @@ public class BTree<E>{
 	t.traverse( POST_ORDER );
 	System.out.println( "Height: " + t.getHeight() );
 
-	System.out.println( t );
+	System.out.println(t);
     }
 }
