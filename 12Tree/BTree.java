@@ -182,19 +182,23 @@ public class BTree<E>{
     public static void main( String[] args ) {
 	
 	BTree<Integer> t = new BTree<Integer>();
-	for(int i = 0; i < 10; i++){
+
+	for (int i = 0; i < 10; i++) {
 	    t.add(i);
 	}
-	System.out.println("In Order");
-	t.inOrder(t.root);
 
-	System.out.println("Pre Order");
-	t.preOrder(t.root);
 
-	System.out.println("Post Order");
-	t.postOrder(t.root);
+	/*	System.out.println("In Order");
+		t.inOrder(t.root);
+		
+		System.out.println("Pre Order");
+		t.preOrder(t.root);
+		
+		System.out.println("Post Order");
+		t.postOrder(t.root);
+	*/
 	
-	/*	for ( int i = 0; i < 8; i++ ) 
+		for ( int i = 0; i < 8; i++ ) 
 		t.add(i );
 		System.out.println( "Pre-order: ");
 		t.traverse( PRE_ORDER );
@@ -202,7 +206,8 @@ public class BTree<E>{
 		t.traverse( IN_ORDER );
 		System.out.println( "Post-order: ");
 		t.traverse( POST_ORDER );
-		System.out.println( "Height: " + t.getHeight() );*/
+		System.out.println( "Height: " + t.getHeight() );
+	
 	
     }
 }
