@@ -41,7 +41,7 @@ public class BSTree <T extends Comparable> {
 	} else if (curr.compareTo(t) < 0){
 	    curr.setRight(add(curr.getRight(),t));
 	} else if (curr.compareTo(t) == 0){
-	    curr.
+	    curr.upCount();
 	}
     }
 
