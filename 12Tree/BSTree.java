@@ -37,11 +37,11 @@ public class BSTree <T extends Comparable> {
 	if (root == null){
 	    return t;
 	} else if (curr.compareTo(t) > 0){
-	    root.setLeft(add(root.getLeft(),t));
+	    curr.setLeft(add(curr.getLeft(),t));
 	} else if (curr.compareTo(t) < 0){
-	    root.setRight(add(root.getRight(),t));
+	    curr.setRight(add(curr.getRight(),t));
 	} else if (curr.compareTo(t) == 0){
-	    // counter up one?
+	    curr.
 	}
     }
 
