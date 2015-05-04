@@ -13,6 +13,7 @@ public class BSTreeNode<T extends Comparable> {
 	data = d;
 	left = right = null;
 	count = 1;
+
     }
     
     //accessors
@@ -41,5 +42,9 @@ public class BSTreeNode<T extends Comparable> {
     }
     public void upCount(){
 	count++;
+    }
+
+    public boolean isLeaf(){
+	return (getLeft() == null) && (getRight() == null);
     }
 }

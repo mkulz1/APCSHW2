@@ -65,9 +65,30 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	return null;
+	if (curr == null) {
+	    return curr;
+	}
+	if (c.compareTo(curr.getData()) < 0) {
+	    curr.setLeft(remove(curr.getLeft(),c));
+	} else if (c.compareTo(curr.getData()) > 0) {
+	    curr.setRight(remove(curr.getRight(),c));
+	} else if (!isLeaf(curr)) {
+	    curr.setData(findMin(curr.getRight()).getData());
+	    curr.setRight(remove(curr.getRight(),curr.getData()));
+	} else {
+	    curr = (curr.getLeft() != null) ? curr.getLeft() : curr.getRight();
+	}
+	return curr;
     }
 
+    public BSTreeNode<T> findMin(BSTreeNode<T> t){
+	if ( t == null) {
+	    return null;
+	} else if (t.getLeft() == null) {
+	    return t;
+	}
+	return findMin(t.getLeft());
+    }
 
     /*======== public void inOrder()) ==========
       Inputs:   
