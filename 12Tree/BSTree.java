@@ -230,6 +230,20 @@ public class BSTree <T extends Comparable> {
     
     public static void main( String[] args ) {
 	
+	BSTree<String> tester = new BSTree<String>();
+
+	tester.add("m");
+	tester.add("a");
+	tester.add("r");
+	tester.add("i");
+	tester.add("y");
+	tester.add("a");
+
+	System.out.println();
+	System.out.println(tester);
+	System.out.println();
+	tester.inOrder();
+	System.out.println(tester);
     }
     
 }
