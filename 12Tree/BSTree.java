@@ -38,12 +38,14 @@ public class BSTree <T extends Comparable> {
 	    return t;
 	} else if (curr.getData().compareTo(t.getData()) > 0){
 	    curr.setLeft(add(curr.getLeft(),t));
-	} else if (curr.getData().compareTo(t.getData()) < 0){
+	    return curr;
+	} else {/* (curr.getData().compareTo(t.getData()) < 0){*/
 	    curr.setRight(add(curr.getRight(),t));
-	} else if (curr.getData().compareTo(t.getData()) == 0){
+	    return curr;
+	}/* else if (curr.getData().compareTo(t.getData()) == 0){
 	    curr.upCount();
 	} 
-	return null;
+	return null;*/
     }
     
     /*======== public void remove() ==========
