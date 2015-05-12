@@ -5,6 +5,7 @@ public class MyHeap{
 
     private boolean isMaxHeap;
     private int[] heap;
+    // heap[0] keeps track of next open spot in array
 
     public MyHeap(){
 	isMaxHeap = true;
@@ -27,6 +28,9 @@ public class MyHeap{
     }
 
     public int remove(){
+	heap[1] = heap[heap[0]-1];
+
+	heap[0] -= 1;
 	return heap[1];
     }
 
@@ -48,6 +52,12 @@ public class MyHeap{
 
 	    index = index/2;	    
 	} 
+    }
+
+    public void pushDown(int index){
+ 
+	while(heap[index] < heap[index*2] || heap[index] < heap[index*2+1])
+
     }
     
     public int peek(){
