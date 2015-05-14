@@ -67,16 +67,25 @@ public class MyHeap{
 	    index = index/2;	    
 	} 
     }
- public void pushUpMin(int index){
-
+    public void pushUpMin(int index){
 	while ( (heap[index] < heap[index/2]) && index/2 != 0 ) {
-
-	    int hold = heap[index/2];
-	    heap[index/2] = heap[index];
-	    heap[index] = hold;
-
+	    swap(index,index/2);
 	    index = index/2;	    
 	} 
+    }
+
+    public boolean isGood(int indexOne,int indexTwo){
+	if(isMaxHeap){
+	    return heap[indexOne] < heap[indexTwo];
+	}else{
+	    return heap[indexOne] > heap[indexTwo];
+	}
+    }
+
+    public void swap(int indexOne, int indexTwo){
+	int hold = heap[indexTwo];
+	heap[indexTwo] = heap[indexOne];
+	heap[indexOne] = hold;
     }
 
     public void pushDown(int index){
