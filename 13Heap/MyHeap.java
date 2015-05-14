@@ -28,11 +28,17 @@ public class MyHeap{
     }
 
     public int remove(){
+
+	if (heap[0] == 1) {
+	    throw new NoSuchElementException();
+	}
+
 	heap[1] = heap[heap[0]-1];
 	heap[heap[0]-1] = 0;
 	pushDown(1);
 	heap[0] -= 1;
 	return heap[1];
+
     }
 
     public void add(int value){
@@ -56,22 +62,40 @@ public class MyHeap{
     }
 
     public void pushDown(int index){
- 
-	while(heap[index] < heap[index*2] || heap[index] < heap[index*2+1])
+	System.out.println("Starting: " + this);
+	while(heap[index] < heap[index*2] || heap[index] < heap[index*2+1]){
+
 	    if(heap[index] < heap[index*2]){
+		//	System.out.println(heap[index] + " is less than " + heap[index*2]);
 		int hold = heap[index*2];
 		heap[index*2] = heap[index];
 		heap[index] = hold;
+		if(heap[index] < heap[index*2+1]){
+		    int holder = heap[index*2+1];
+		    heap[index*2+1] = heap[index];
+		    heap[index] = holder;
+		}
 		index = index*2;
+    
 	    } else if (heap[index] < heap[index*2+1]){
 		int hold = heap[index*2+1];
 		heap[index*2+1] = heap[index];
 		heap[index] = hold;
+		if(heap[index] < heap[index*2]){
+		    int holder = heap[index*2];
+		    heap[index*2] = heap[index];
+		    heap[index] = holder;
+		}
 		index = index*2+1;
 	    }
+	    System.out.println(this);
+	}
     }
     
     public int peek(){
+	if (heap[0] == 1) {
+	    throw new NoSuchElementException();
+	} 
 	return heap[1];
     }
 
@@ -88,6 +112,9 @@ public class MyHeap{
 	h.add(96);
 	System.out.println("After Adding: ");
 	System.out.println(h);
+	System.out.println();
+
+	h.remove();
 	h.remove();
 	System.out.println("After Removing: ");
 	System.out.println(h);
