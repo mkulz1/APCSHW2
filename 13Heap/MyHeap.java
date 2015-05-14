@@ -8,9 +8,7 @@ public class MyHeap{
     // heap[0] keeps track of next open spot in array
 
     public MyHeap(){
-	isMaxHeap = true;
-	heap = new int[10];
-	heap[0] = 1;
+	this(true);
     }
     public MyHeap(boolean isMax){
 	isMaxHeap = isMax;
@@ -33,31 +31,31 @@ public class MyHeap{
 	    throw new NoSuchElementException();
 	}
 
+	int removed = heap[1];
+
 	heap[1] = heap[heap[0]-1];
 	heap[heap[0]-1] = 0;
 	heap[0] -= 1;
-	if(isMaxHeap){
-	    pushDown(1);
-	}else{
-	    pushDownMin(1);
-	}
-	return heap[1];
-
+	pushDown(1);
+	return removed;
+	
     }
 
     public void add(int value){
-	    int index = heap[0];
-	    heap[index] = value;
-	    pushUp(index);
-	    heap[0] += 1;
+	int index = heap[0];
+	heap[index] = value;
+	pushUp(index);
+	heap[0] += 1;
+	resize();
     }
     
     public void pushUp(int index){
-	
-	while ( isGood(index,index/2) && index/2 != 0 ) {
-	    swap(index,index/2);
-	    index = index/2;	    
-	} 
+	if(index > 1){
+	    if (isGood(index,index/2)) {
+		swap(index,index/2);
+		pushUp(index/2);	    
+	    } 
+	}
     }
     
     public boolean isGood(int a,int b){
@@ -77,69 +75,18 @@ public class MyHeap{
     public void pushDown(int index){
 
 	int left = index*2;
-	int right = index*2 + 1;
+	//	int right = index*2 + 1;
+	//	int next;
 
-        if (isGood(heap[index],heap[left])){
+	if(heap[left] > heap[0]-1){
+	    return;
+	}
+	if(!isGood(heap[index],heap[left])){
 	    swap(index,left);
-	}
-	if (isGood(heap[index],heap[right])){
-	    swap(index,right);
-	}
-	/*	while(heap[index] < heap[index*2] || heap[index] < heap[index*2+1]){
-	    // Ugly, messy code =___=
-	    if(heap[index] < heap[index*2]){
-		int hold = heap[index*2];
-		heap[index*2] = heap[index];
-		heap[index] = hold;
-		if(heap[index] < heap[index*2+1]){
-		    int holder = heap[index*2+1];
-		    heap[index*2+1] = heap[index];
-		    heap[index] = holder;
-		}
-		index = index*2;
-    
-	    } else if (heap[index] < heap[index*2+1]){
-		int hold = heap[index*2+1];
-		heap[index*2+1] = heap[index];
-		heap[index] = hold;
-		if(heap[index] < heap[index*2]){
-		    int holder = heap[index*2];
-		    heap[index*2] = heap[index];
-		    heap[index] = holder;
-		}
-		index = index*2+1;
-	    }
-	    }*/
-    }
-    public void pushDownMin(int index){
-	while(index < heap[0]-1 && (heap[index] > heap[index*2] || heap[index] > heap[index*2+1])){
-	    // Ugly, messy code =___=
-	    System.out.println(this);
-	    if(heap[index] > heap[index*2]){
-		int hold = heap[index*2];
-		heap[index*2] = heap[index];
-		heap[index] = hold;
-		if(heap[index] > heap[index*2+1]){
-		    int holder = heap[index*2+1];
-		    heap[index*2+1] = heap[index];
-		    heap[index] = holder;
-		}
-		index = index*2;
-		
-	    } else if (heap[index] > heap[index*2+1]){
-		int hold = heap[index*2+1];
-		heap[index*2+1] = heap[index];
-		heap[index] = hold;
-		if(heap[index] > heap[index*2]){
-		    int holder = heap[index*2];
-		    heap[index*2] = heap[index];
-		    heap[index] = holder;
-		}
-		index = index*2+1;
-	    }
-	    System.out.println(this);
+	    pushDown(left);
 	}
     }
+   
     
     public int peek(){
 	if (heap[0] == 1) {
@@ -148,6 +95,14 @@ public class MyHeap{
 	return heap[1];
     }
 
+
+    private void resize() {
+	if (heap[0]-1 == heap.length - 1) {
+	    heap = Arrays.copyOf(heap, (heap[0]-1) * 2);
+	} else if (heap[0]-1 < heap.length / 2 && heap[0]-1 > 10) {
+	    heap = Arrays.copyOf(heap, heap.length / 2);
+	}
+    }
     public static void main(String[]args){
 
 	MyHeap h = new MyHeap();
@@ -167,22 +122,21 @@ public class MyHeap{
 	h.remove();
 	System.out.println("After Removing: ");
 	System.out.println(h);
-
+	
 	MyHeap m = new MyHeap(false);
 	System.out.println("Min Heap");
 	m.add(3);
 	m.add(8);
-	m.add(67);
 	m.add(4);	
 	m.add(30);
 	m.add(85);
 	m.add(25);	
 	m.add(96);
+	m.add(67);
 	System.out.println("After Adding: ");
 	System.out.println(m);
 	System.out.println();
 
-	m.remove();
 	m.remove();
 	System.out.println("After Removing: ");
 	System.out.println(m);
