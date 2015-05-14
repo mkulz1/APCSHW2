@@ -48,37 +48,23 @@ public class MyHeap{
     public void add(int value){
 	    int index = heap[0];
 	    heap[index] = value;
-	    if(isMaxHeap){
-		pushUp(index);
-	    }else{
-		pushUpMin(index);
-	    }
+	    pushUp(index);
 	    heap[0] += 1;
     }
     
     public void pushUp(int index){
-
-	while ( (heap[index] > heap[index/2]) && index/2 != 0 ) {
-
-	    int hold = heap[index/2];
-	    heap[index/2] = heap[index];
-	    heap[index] = hold;
-
-	    index = index/2;	    
-	} 
-    }
-    public void pushUpMin(int index){
-	while ( (heap[index] < heap[index/2]) && index/2 != 0 ) {
+	
+	while ( isGood(index,index/2) && index/2 != 0 ) {
 	    swap(index,index/2);
 	    index = index/2;	    
 	} 
     }
-
-    public boolean isGood(int indexOne,int indexTwo){
+    
+    public boolean isGood(int a,int b){
 	if(isMaxHeap){
-	    return heap[indexOne] < heap[indexTwo];
+	    return a > b;
 	}else{
-	    return heap[indexOne] > heap[indexTwo];
+	    return a < b;
 	}
     }
 
@@ -89,7 +75,17 @@ public class MyHeap{
     }
 
     public void pushDown(int index){
-	while(heap[index] < heap[index*2] || heap[index] < heap[index*2+1]){
+
+	int left = index*2;
+	int right = index*2 + 1;
+
+        if (isGood(heap[index],heap[left])){
+	    swap(index,left);
+	}
+	if (isGood(heap[index],heap[right])){
+	    swap(index,right);
+	}
+	/*	while(heap[index] < heap[index*2] || heap[index] < heap[index*2+1]){
 	    // Ugly, messy code =___=
 	    if(heap[index] < heap[index*2]){
 		int hold = heap[index*2];
@@ -113,7 +109,7 @@ public class MyHeap{
 		}
 		index = index*2+1;
 	    }
-	}
+	    }*/
     }
     public void pushDownMin(int index){
 	while(index < heap[0]-1 && (heap[index] > heap[index*2] || heap[index] > heap[index*2+1])){
