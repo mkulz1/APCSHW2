@@ -35,18 +35,25 @@ public class MyHeap{
 
 	heap[1] = heap[heap[0]-1];
 	heap[heap[0]-1] = 0;
-	pushDown(1);
 	heap[0] -= 1;
+	if(isMaxHeap){
+	    pushDown(1);
+	}else{
+	    pushDownMin(1);
+	}
 	return heap[1];
 
     }
 
     public void add(int value){
-
-	int index = heap[0];
-	heap[index] = value;
-	pushUp(index);
-	heap[0] += 1;
+	    int index = heap[0];
+	    heap[index] = value;
+	    if(isMaxHeap){
+		pushUp(index);
+	    }else{
+		pushUpMin(index);
+	    }
+	    heap[0] += 1;
     }
     
     public void pushUp(int index){
@@ -60,13 +67,22 @@ public class MyHeap{
 	    index = index/2;	    
 	} 
     }
+ public void pushUpMin(int index){
+
+	while ( (heap[index] < heap[index/2]) && index/2 != 0 ) {
+
+	    int hold = heap[index/2];
+	    heap[index/2] = heap[index];
+	    heap[index] = hold;
+
+	    index = index/2;	    
+	} 
+    }
 
     public void pushDown(int index){
-	System.out.println("Starting: " + this);
 	while(heap[index] < heap[index*2] || heap[index] < heap[index*2+1]){
-
+	    // Ugly, messy code =___=
 	    if(heap[index] < heap[index*2]){
-		//	System.out.println(heap[index] + " is less than " + heap[index*2]);
 		int hold = heap[index*2];
 		heap[index*2] = heap[index];
 		heap[index] = hold;
@@ -82,6 +98,34 @@ public class MyHeap{
 		heap[index*2+1] = heap[index];
 		heap[index] = hold;
 		if(heap[index] < heap[index*2]){
+		    int holder = heap[index*2];
+		    heap[index*2] = heap[index];
+		    heap[index] = holder;
+		}
+		index = index*2+1;
+	    }
+	}
+    }
+    public void pushDownMin(int index){
+	while(index < heap[0]-1 && (heap[index] > heap[index*2] || heap[index] > heap[index*2+1])){
+	    // Ugly, messy code =___=
+	    System.out.println(this);
+	    if(heap[index] > heap[index*2]){
+		int hold = heap[index*2];
+		heap[index*2] = heap[index];
+		heap[index] = hold;
+		if(heap[index] > heap[index*2+1]){
+		    int holder = heap[index*2+1];
+		    heap[index*2+1] = heap[index];
+		    heap[index] = holder;
+		}
+		index = index*2;
+		
+	    } else if (heap[index] > heap[index*2+1]){
+		int hold = heap[index*2+1];
+		heap[index*2+1] = heap[index];
+		heap[index] = hold;
+		if(heap[index] > heap[index*2]){
 		    int holder = heap[index*2];
 		    heap[index*2] = heap[index];
 		    heap[index] = holder;
@@ -118,6 +162,25 @@ public class MyHeap{
 	h.remove();
 	System.out.println("After Removing: ");
 	System.out.println(h);
+
+	MyHeap m = new MyHeap(false);
+	System.out.println("Min Heap");
+	m.add(3);
+	m.add(8);
+	m.add(67);
+	m.add(4);	
+	m.add(30);
+	m.add(85);
+	m.add(25);	
+	m.add(96);
+	System.out.println("After Adding: ");
+	System.out.println(m);
+	System.out.println();
+
+	m.remove();
+	m.remove();
+	System.out.println("After Removing: ");
+	System.out.println(m);
     }
 
 }
