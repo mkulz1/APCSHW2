@@ -3,8 +3,8 @@ import java.io.*;
 
 public class MyHeap{
 
-    private boolean isMaxHeap;
-    private int[] heap;
+    public boolean isMaxHeap;
+    public int[] heap;
     // heap[0] keeps track of next open spot in array
 
     public MyHeap(){
