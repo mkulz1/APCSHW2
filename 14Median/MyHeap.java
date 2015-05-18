@@ -7,6 +7,10 @@ public class MyHeap{
     public int[] heap;
     // heap[0] keeps track of next open spot in array
 
+    public String name(){
+	return "kulyk.mariya";
+    }
+
     public MyHeap(){
 	this(true);
     }
@@ -15,16 +19,23 @@ public class MyHeap{
 	heap = new int[10];
 	heap[0] = 1;
     }
-
+   
     public String toString(){
-	String result = "{ ";
-	for(int i = 0; i < heap.length; i++){
-	    result += heap[i] + ",";
+	String result = "";	
+	int rows = (int)(Math.log((double)heap[0]) / Math.log(2.0)) + 1;
+	int index = 1;
+	for (int i = 0; i < rows; i++){
+	    int x = (int)Math.pow(2, i);
+	    for (int j = 0; j < x; j++){
+		result += heap[index] + " ";
+		index ++;
+	    }
+	    result += "\n";
 	}
-	result = result.substring(0,result.length()-1);
-	return result + " }";
+	
+	return result;
     }
-
+    
     public int remove(){
 
 	if (heap[0] == 1) {

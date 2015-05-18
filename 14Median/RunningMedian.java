@@ -7,28 +7,38 @@ public class RunningMedian{
 	lesser = new MyHeap(true);
     }
 
+    public String name(){
+	return "kulyk.mariya";
+    }
+
+
     public void add(int value){
-	if(lesser.heap[0] == 1){
-	    lesser.add(value);
-	    return;
-	} else if (greater.heap[0] == 1){
+	if(greater.heap[0] == 1){
 	    greater.add(value);
+	    return;
+	} else if (lesser.heap[0] == 1){
+	    lesser.add(value);
 	    return;
 	}
 
-	if(value > getMedian()){
+	if(value > greater.heap[1]){
+	    if(greater.heap[0] - lesser.heap[0] == 1){
+		int hold = greater.remove();
+		lesser.add(hold);
+	    }
 	    greater.add(value);
 	}else{
+	    if(lesser.heap[0] - greater.heap[0] == 1){
+		int hold = lesser.remove();
+		greater.add(hold);
+	    }
 	    lesser.add(value);
 	}
     }
-
+    
     public double getMedian(){
 	if (greater.heap[0] == lesser.heap[0]) {
-	    System.out.println("They are both of equal length!");
-	    System.out.println("Greater is: " + greater.peek());
-	    System.out.println("Lesser is: " + lesser.peek());
-	    return ((double)greater.peek() + (double)lesser.peek()) / 2;
+	    return (greater.peek() + lesser.peek()) / 2;
 	} else if (greater.heap[0] > lesser.heap[0]) {
 	    return greater.peek();
 	} else {
@@ -39,12 +49,17 @@ public class RunningMedian{
     public static void main(String[]args){
 	RunningMedian test = new RunningMedian();
 
-	test.add(9);
-	test.add(8);
+	test.add(1);
+	test.add(5);
 	test.add(6);
+	test.add(19);
+	test.add(56);
+	test.add(70);
+	test.add(99);
 
 	System.out.println("Median is: ");
 	System.out.println(test.getMedian());
+	System.out.println(test.greater);
     }
 
 }
