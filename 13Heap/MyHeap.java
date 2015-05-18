@@ -16,14 +16,27 @@ public class MyHeap{
 	heap[0] = 1;
     }
 
-    public String toString(){
-	String result = "{ ";
-	for(int i = 0; i < heap.length; i++){
-	    result += heap[i] + ",";
-	}
-	result = result.substring(0,result.length()-1);
-	return result + " }";
+    public String name(){
+	return "kulyk.mariya";
     }
+
+    public String toString(){
+	String result = "";	
+	int rows = (int)(Math.log((double)heap[0]) / Math.log(2.0)) + 1;
+	int index = 1;
+	for (int i = 0; i < rows; i++){
+	    int x = (int)Math.pow(2, i);
+	    for (int j = 0; j < x; j++){
+		result += heap[index] + " ";
+		index ++;
+	    }
+	    result += "\n";
+	}
+	
+	return result;
+    }
+    
+
 
     public int remove(){
 

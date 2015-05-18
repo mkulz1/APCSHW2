@@ -11,6 +11,10 @@ public class Frontier{
 	mode = m;
 	deq = new MyDeque<Coordinate>();
     }
+
+    public String name(){
+	return "kulyk.mariya";
+    }
     
     public void setEnd(Coordinate e){
 	end = e;

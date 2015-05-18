@@ -13,6 +13,10 @@ public class Coordinate{
 	this.steps = steps;
     }
 
+ public String name(){
+	return "kulyk.mariya";
+    }
+
     public int getX(){
 	return this.x;
     }

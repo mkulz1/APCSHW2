@@ -9,7 +9,11 @@ public class BTree<E>{
     public Random rand;
 
     private TreeNode<E> root;
-
+    
+    public String name(){
+	return "kulyk.mariya";
+    }
+    
     public BTree() {
 	root = null;
 	rand = new Random();

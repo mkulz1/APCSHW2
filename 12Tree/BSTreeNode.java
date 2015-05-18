@@ -16,6 +16,10 @@ public class BSTreeNode<T extends Comparable> {
 
     }
     
+    public String name(){
+	return "kulyk.mariya";
+    }
+    
     //accessors
     public T getData() {
 	return data;

@@ -9,6 +9,10 @@ public class BSTree <T extends Comparable> {
 	root = null;
     }
 
+    public String name(){
+	return "kulyk.mariya";
+    }
+
     public boolean isEmpty() {
 	return root == null;
     }

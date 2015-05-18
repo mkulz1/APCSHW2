@@ -5,6 +5,10 @@ public class TreeNode<E>{
     
     private E data;
     private TreeNode<E> left,right;
+
+    public String name(){
+	return "kulyk.mariya";
+    }
     
     public TreeNode(E value){
 	data = value;
