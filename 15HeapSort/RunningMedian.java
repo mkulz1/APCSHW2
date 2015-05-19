@@ -70,6 +70,20 @@ public class RunningMedian{
 
 	System.out.println();
 
+	///// Code for heapSort
+	int next = test.lesser.heap[0]-1;
+	int[] longer = new int[test.greater.heap[0] + test.lesser.heap[0]-2];
+	for(int i = next-1; i >=0; i--){
+	    longer[i] = test.lesser.remove();
+	}
+	int se = next + test.greater.heap[0] - 1;
+	System.out.println("New: " + se);
+	for(int i = next; i < se;i++){
+	    longer[i] = test.greater.remove();
+	}
+
+	System.out.println(Arrays.toString(longer));
+
     }
 
 }
