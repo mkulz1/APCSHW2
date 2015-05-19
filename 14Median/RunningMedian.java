@@ -59,7 +59,10 @@ public class RunningMedian{
 
 	System.out.println("Median is: ");
 	System.out.println(test.getMedian());
+	System.out.println("Greater: ");
 	System.out.println(test.greater);
+	System.out.println("Lesser: ");
+	System.out.println(test.lesser);
     }
 
 }
