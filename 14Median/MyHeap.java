@@ -7,10 +7,6 @@ public class MyHeap{
     public int[] heap;
     // heap[0] keeps track of next open spot in array
 
-    public String name(){
-	return "kulyk.mariya";
-    }
-
     public MyHeap(){
 	this(true);
     }
@@ -19,23 +15,16 @@ public class MyHeap{
 	heap = new int[10];
 	heap[0] = 1;
     }
-   
-    public String toString(){
-	String result = "";	
-	int rows = (int)(Math.log((double)heap[0]) / Math.log(2.0)) + 1;
-	int index = 1;
-	for (int i = 0; i < rows; i++){
-	    int x = (int)Math.pow(2, i);
-	    for (int j = 0; j < x; j++){
-		result += heap[index] + " ";
-		index ++;
-	    }
-	    result += "\n";
-	}
-	
-	return result;
+
+    public String name(){
+	return "kulyk.mariya";
+    }
+  
+    public String toString() {
+        return Arrays.toString(heap);
     }
     
+
     public int remove(){
 
 	if (heap[0] == 1) {
@@ -86,18 +75,26 @@ public class MyHeap{
     public void pushDown(int index){
 
 	int left = index*2;
-	//	int right = index*2 + 1;
-	//	int next;
-
-	if(heap[left] > heap[0]-1){
-	    return;
+       	int right = index*2 + 1;
+	try{
+	    if(!isGood(heap[index],heap[left])){
+		if(left<heap[0]){
+		    swap(index,left);
+		    pushDown(left);
+		}
+	    }
+	    if(!isGood(heap[index],heap[right])){
+		if(right<heap[0]){
+		    swap(index,right);
+		    pushDown(right);
+		}
+	    }
+	} catch (IndexOutOfBoundsException e){
+	    
 	}
-	if(!isGood(heap[index],heap[left])){
-	    swap(index,left);
-	    pushDown(left);
-	}
+	
     }
-   
+    
     
     public int peek(){
 	if (heap[0] == 1) {
@@ -105,8 +102,8 @@ public class MyHeap{
 	} 
 	return heap[1];
     }
-
-
+    
+    
     private void resize() {
 	if (heap[0]-1 == heap.length - 1) {
 	    heap = Arrays.copyOf(heap, (heap[0]-1) * 2);
@@ -127,14 +124,15 @@ public class MyHeap{
 	h.add(96);
 	System.out.println("After Adding: ");
 	System.out.println(h);
-	System.out.println();
 
 	h.remove();
-	h.remove();
+
+	System.out.println();
 	System.out.println("After Removing: ");
 	System.out.println(h);
 	
 	MyHeap m = new MyHeap(false);
+	System.out.println();
 	System.out.println("Min Heap");
 	m.add(3);
 	m.add(8);
@@ -146,9 +144,10 @@ public class MyHeap{
 	m.add(67);
 	System.out.println("After Adding: ");
 	System.out.println(m);
-	System.out.println();
 
 	m.remove();
+
+	System.out.println();
 	System.out.println("After Removing: ");
 	System.out.println(m);
     }

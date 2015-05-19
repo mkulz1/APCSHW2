@@ -19,21 +19,9 @@ public class MyHeap{
     public String name(){
 	return "kulyk.mariya";
     }
-
-    public String toString(){
-	String result = "";	
-	int rows = (int)(Math.log((double)heap[0]) / Math.log(2.0)) + 1;
-	int index = 1;
-	for (int i = 0; i < rows; i++){
-	    int x = (int)Math.pow(2, i);
-	    for (int j = 0; j < x; j++){
-		result += heap[index] + " ";
-		index ++;
-	    }
-	    result += "\n";
-	}
-	
-	return result;
+  
+    public String toString() {
+        return Arrays.toString(heap);
     }
     
 
